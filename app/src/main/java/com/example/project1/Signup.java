@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-// Test
-
 public class Signup extends AppCompatActivity {
 
     private Button btnSignMeUp;
