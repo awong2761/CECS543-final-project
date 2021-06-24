@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Project1</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Signup">Signup</string>
+    <string name="Login">Login</string>
+    <string name="signUsername">Username</string>
+    <string name="signPassword">Password</string>
+    <string name="signRepassword">Retype Password</string>
+    <string name="signEmail">Email</string>
+    <string name="signPhone">Phone</string>
+    <string name="signMeUp">Sign me up!</string>
+</resources>
