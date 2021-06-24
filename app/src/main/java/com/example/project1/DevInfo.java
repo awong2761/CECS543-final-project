@@ -9,7 +9,8 @@ import android.view.View;
 
 public class DevInfo extends AppCompatActivity {
 
-    Toolbar toolbar;
+    private Toolbar toolbar;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +19,12 @@ public class DevInfo extends AppCompatActivity {
         toolbar = findViewById(R.id.dev_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        username = getIntent().getStringExtra("username");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent welcome = new Intent(getApplicationContext(), Welcome.class);
+                welcome.putExtra("username", username);
                 startActivity(welcome);
             }
         });
