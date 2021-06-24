@@ -14,7 +14,7 @@ public class Welcome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        //TESTER TESTING
+
         // Passes info from previous activity and outputs welcome message
         txtMessage = findViewById(R.id.message);
         String username = getIntent().getStringExtra("username");
