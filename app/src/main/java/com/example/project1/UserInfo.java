@@ -40,8 +40,8 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
             public void onClick(View v){
                 Intent done = new Intent(context, Login.class);
                 startActivity(done);
-                Toast.makeText(context, "Account has been created" +
-                        "you can now login", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Account has been created! " +
+                        "You can now login", Toast.LENGTH_SHORT).show();
             }
         });
     }
