@@ -43,7 +43,8 @@ public class Welcome extends AppCompatActivity {
         Context context = getApplicationContext();
         String selection = item.getTitle().toString();
         if(selection.equals("developer info")) {
-            Toast.makeText(context,"developer info selected", Toast.LENGTH_SHORT).show();
+            Intent devInfo = new Intent(context, DevInfo.class);
+            startActivity(devInfo);
         }
         return true;
     }
