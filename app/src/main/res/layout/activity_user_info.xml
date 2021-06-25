@@ -7,7 +7,9 @@
     android:paddingLeft="16dp"
     android:paddingTop="16dp"
     android:paddingRight="16dp"
+    android:background="@color/background"
     tools:context=".UserInfo">
+
 
     <TextView
         android:id="@+id/gender_txt"
