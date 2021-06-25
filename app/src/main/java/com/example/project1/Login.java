@@ -38,8 +38,6 @@ public class Login extends AppCompatActivity {
         username = findViewById(R.id.Username);
         password = findViewById(R.id.Password);
 
-        btnLogin.setBackgroundColor(getResources().getColor(R.color.green));
-        btnSignup.setBackgroundColor(getResources().getColor(R.color.green));
         // Login button leads to welcome activity page
         btnLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
 
 public class Signup extends AppCompatActivity {
 
@@ -35,9 +34,6 @@ public class Signup extends AppCompatActivity {
         repassword = findViewById(R.id.signRepassword);
         email = findViewById(R.id.signEmail);
         phone = findViewById(R.id.signPhone);
-        setTitle("Signup");
-
-        btnSignMeUp.setBackgroundColor(getResources().getColor(R.color.green));
 
         // Sign Me Up Button creation to add to database
         btnSignMeUp.setOnClickListener(new View.OnClickListener() {

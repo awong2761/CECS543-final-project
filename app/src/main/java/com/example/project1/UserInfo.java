@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     String[] act_lvl = {"Low", "Moderate", "High"};
-    private Button finish;
+    private Button infoDone;
     private Context context;
 
 
@@ -34,10 +34,9 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
         actspin.setAdapter(levels);
 
         context = getApplicationContext();
-        finish = findViewById(R.id.finish_user);
-        finish.setBackgroundColor(getResources().getColor(R.color.green));
+        infoDone = findViewById(R.id.finish_user);
 
-        finish.setOnClickListener(new View.OnClickListener(){
+        infoDone.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 Intent done = new Intent(context, Login.class);
                 startActivity(done);
