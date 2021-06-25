@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity {
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
 
-                Intent login = new Intent(context, Navigation.class);
+                Intent login = new Intent(context, Welcome.class);
 
                 // Checks to see if username and passwords checks out, if so it starts next activity
                 if(data.CheckCredentials(user, pass) == true){
