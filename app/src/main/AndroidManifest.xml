@@ -9,10 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project1">
-        <activity android:name=".DevInfo"></activity>
+        <activity
+            android:name=".Navigation"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/Theme.Project1.NoActionBar"></activity>
+        <activity android:name=".DevInfo" />
         <activity android:name=".UserInfo" />
         <activity android:name=".Signup" />
-        <activity android:name=".Welcome" />
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

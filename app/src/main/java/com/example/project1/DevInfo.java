@@ -20,13 +20,13 @@ public class DevInfo extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         username = getIntent().getStringExtra("username");
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent welcome = new Intent(getApplicationContext(), Welcome.class);
-                welcome.putExtra("username", username);
-                startActivity(welcome);
-            }
-        });
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent welcome = new Intent(getApplicationContext(), Welcome.class);
+//                welcome.putExtra("username", username);
+//                startActivity(welcome);
+//            }
+//        });
     }
 }
