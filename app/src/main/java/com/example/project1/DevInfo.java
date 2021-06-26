@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 public class DevInfo extends AppCompatActivity {
@@ -20,13 +21,15 @@ public class DevInfo extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         username = getIntent().getStringExtra("username");
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent welcome = new Intent(getApplicationContext(), Welcome.class);
-//                welcome.putExtra("username", username);
-//                startActivity(welcome);
-//            }
-//        });
+
     }
+
+   @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+        }
+       return true;
+   }
 }
