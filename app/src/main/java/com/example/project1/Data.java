@@ -13,8 +13,7 @@ public class Data {
 
         // Adding some items into the hashmap table
 
-        hmCredentials.put("AJ", "CoolDude1");
-        hmCredentials.put("test", "1234");
+        hmCredentials.put("1", "1");
     }
 
     // This method adds a new username and password to the hashmap
