@@ -37,8 +37,6 @@ public class Signup extends AppCompatActivity {
         phone = findViewById(R.id.signPhone);
         setTitle("Signup");
 
-        btnSignMeUp.setBackgroundColor(getResources().getColor(R.color.green));
-
         // Sign Me Up Button creation to add to database
         btnSignMeUp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
