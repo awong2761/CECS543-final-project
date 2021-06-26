@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -30,6 +31,7 @@ public class Navigation extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityNavigationBinding binding;
     private DrawerLayout drawer;
+    private TextView drawerUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,12 @@ public class Navigation extends AppCompatActivity {
         NavController navController = findNavController(this, R.id.nav_host_fragment_content_navigation);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        View headerView = navigationView.getHeaderView(0);
+        drawerUsername = headerView.findViewById(R.id.drawer_username);
+        String user = getIntent().getStringExtra("username");
+        drawerUsername.setText("Welcome " + user);
+
 
     }
 
