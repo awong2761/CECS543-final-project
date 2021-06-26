@@ -9,16 +9,13 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.Project1.AppBarOverlay"
-        android:fontFamily="@font/open_sans">
-
+        android:theme="@style/Theme.Project1.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:fontFamily="@font/open_sans"
             app:popupTheme="@style/Theme.Project1.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
