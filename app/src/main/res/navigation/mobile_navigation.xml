@@ -12,13 +12,13 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_help"
         android:name="com.example.project1.ui.food.FoodFragment"
         android:label="@string/menu_help"
         tools:layout="@layout/fragment_food" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_food"
         android:name="com.example.project1.ui.help.HelpFragment"
         android:label="@string/menu_food"
         tools:layout="@layout/fragment_help" />

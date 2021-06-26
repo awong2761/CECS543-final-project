@@ -7,14 +7,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.navigation.NavController;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -47,7 +43,7 @@ public class Navigation extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_help, R.id.nav_food)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = findNavController(this, R.id.nav_host_fragment_content_navigation);
