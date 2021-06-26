@@ -1,5 +1,6 @@
 package com.example.project1.ui.food;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
