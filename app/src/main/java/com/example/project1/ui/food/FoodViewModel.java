@@ -1,4 +1,4 @@
-package com.example.project1.ui.gallery;
+package com.example.project1.ui.food;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -1,4 +1,4 @@
-package com.example.project1.ui.gallery;
+package com.example.project1.ui.help;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,23 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.project1.databinding.FragmentFoodBinding;
+import com.example.project1.databinding.FragmentHelpBinding;
 
-public class FoodFragment extends Fragment {
+public class HelpFragment extends Fragment {
 
-    private FoodViewModel foodViewModel;
-    private FragmentFoodBinding binding;
+    private HelpViewModel helpViewModel;
+    private FragmentHelpBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        foodViewModel =
-                new ViewModelProvider(this).get(FoodViewModel.class);
+        helpViewModel =
+                new ViewModelProvider(this).get(HelpViewModel.class);
 
-        binding = FragmentFoodBinding.inflate(inflater, container, false);
+        binding = FragmentHelpBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        foodViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textHelp;
+        helpViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

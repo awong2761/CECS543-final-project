@@ -1,4 +1,4 @@
-package com.example.project1.ui.slideshow;
+package com.example.project1.ui.food;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,23 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.project1.databinding.FragmentHelpBinding;
+import com.example.project1.databinding.FragmentFoodBinding;
 
-public class HelpFragment extends Fragment {
+public class FoodFragment extends Fragment {
 
-    private HelpViewModel helpViewModel;
-    private FragmentHelpBinding binding;
+    private FoodViewModel foodViewModel;
+    private FragmentFoodBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        helpViewModel =
-                new ViewModelProvider(this).get(HelpViewModel.class);
+        foodViewModel =
+                new ViewModelProvider(this).get(FoodViewModel.class);
 
-        binding = FragmentHelpBinding.inflate(inflater, container, false);
+        binding = FragmentFoodBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        helpViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textFood;
+        foodViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
