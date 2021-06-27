@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.io.Serializable;
 
 /**
@@ -43,6 +45,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View v) {
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
+
 
                 Intent login = new Intent(context, Navigation.class);
 

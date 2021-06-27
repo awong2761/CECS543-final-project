@@ -19,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1.databinding.ActivityNavigationBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 import static androidx.navigation.Navigation.findNavController;
@@ -51,6 +52,7 @@ public class Navigation extends AppCompatActivity {
         NavController navController = findNavController(this, R.id.nav_host_fragment_content_navigation);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
         // call if logout is clicked
         logoutClick();
 
@@ -64,6 +66,7 @@ public class Navigation extends AppCompatActivity {
     public void logoutClick() {
         navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(menuItem -> {
             Intent logout = new Intent(getApplicationContext(), Login.class);
+            finish();
             startActivity(logout);
             return true;
         });
