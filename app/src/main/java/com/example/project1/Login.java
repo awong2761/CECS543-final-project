@@ -54,6 +54,9 @@ public class Login extends AppCompatActivity {
 
         if(user != null) {
             Intent login = new Intent(context, Navigation.class);
+            user = firebaseAuth.getInstance().getCurrentUser();
+            String displayName = user.getDisplayName();
+            login.putExtra("displayName", displayName);
             finish();
             startActivity(login);
         }
@@ -112,7 +115,6 @@ public class Login extends AppCompatActivity {
                     FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
                     String displayName = user.getDisplayName();
                     login.putExtra("displayName", displayName);
-                    Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     finish();
                     startActivity(login);
                 } else {
