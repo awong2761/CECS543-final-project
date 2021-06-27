@@ -45,7 +45,6 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
 
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
-    DatabaseReference databaseReference;
 
 
     @Override

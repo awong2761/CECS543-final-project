@@ -2,8 +2,11 @@ package com.example.project1;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +28,8 @@ public class Profile extends AppCompatActivity {
     private TextView gender;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase userData;
+    private Toolbar toolbar;
+    private String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,10 @@ public class Profile extends AppCompatActivity {
         goalWeight = findViewById(R.id.profile_goal_weight);
         activityLevel = findViewById(R.id.profile_activity_level);
         gender = findViewById(R.id.profile_gender);
+        toolbar = findViewById(R.id.profile_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        user = getIntent().getStringExtra("displayName");
 
         firebaseAuth = FirebaseAuth.getInstance();
         userData = FirebaseDatabase.getInstance();
@@ -61,5 +70,17 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                Intent home = new Intent(getApplicationContext(), Navigation.class);
+                home.putExtra("displayName", user);
+                finish();
+                startActivity(home);
+        }
+        return true;
     }
 }

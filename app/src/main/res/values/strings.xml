@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LOVE YOURSELF</string>
+    <string name="app_name">More Fit</string>
     <string name="Signup">Signup</string>
     <string name="Login">Login</string>
     <string name="signUsername">Username</string>
@@ -23,4 +23,5 @@
 
     <string name="change_pass">Change Password</string>
     <string name="menu_logout">Logout</string>
+    <string name="action_search">Search</string>
 </resources>
