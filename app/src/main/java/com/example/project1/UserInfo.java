@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,10 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.slider.LabelFormatter;
 import com.google.android.material.slider.Slider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -28,23 +25,29 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Locale;
-
 public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    String[] gender = {"Male", "Female"};
+    String[] gen = {"Male", "Female"};
     String[] act_lvl = {"Low", "Moderate", "High"};
     private Button finished;
     private Context context;
     private EditText feet;
     private EditText inches;
-    private Slider goalweightslider;
-    private Slider currentweightslider;
+    private Slider currentweight;
+    private Slider goalweight;
+
+    String feetNum;
+    String inchNum;
+    String curWeight;
+    String gWeight;
+    String aLevel;
+    String gender;
 
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
-    UserGoalInfo userInfo;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,51 +55,28 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
 
         feet = findViewById(R.id.feet);
         inches = findViewById(R.id.inches);
+        currentweight = findViewById(R.id.current_weight_slider);
+        goalweight = findViewById(R.id.goal_weight_slider);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        currentweightslider = findViewById(R.id.current_weight_slider);
-        goalweightslider = findViewById(R.id.goal_weight_slider);
-
-        goalweightslider.setLabelFormatter(new LabelFormatter() {
-            @NonNull
-            @NotNull
-            @Override
-            public String getFormattedValue(float value) {
-                return String.format(Locale.US, "%.0f", value);
-            }
-        });
-
-        currentweightslider.setLabelFormatter(new LabelFormatter() {
-            @NonNull
-            @NotNull
-            @Override
-            public String getFormattedValue(float value) {
-                return String.format(Locale.US, "%.0f", value);
-            }
-        });
 
 
-        userInfo = new UserGoalInfo();
 
 
         // Spinner
         Spinner actspin = findViewById(R.id.act_level);
-        actspin.setPrompt("Activity Level");
         actspin.setOnItemSelectedListener(this);
         ArrayAdapter<String> levels = new ArrayAdapter<>(this, android.R.layout.
                 simple_spinner_dropdown_item, act_lvl);
         levels.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         actspin.setAdapter(levels);
 
-
         Spinner genderspin = findViewById(R.id.gender_spin);
-        genderspin.setPrompt("Gender");
-        genderspin.setOnItemSelectedListener(this);
+        actspin.setOnItemSelectedListener(this);
         ArrayAdapter<String> genders= new ArrayAdapter<>(this, android.R.layout.
-                simple_spinner_dropdown_item, gender);
+                simple_spinner_dropdown_item, gen);
         levels.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderspin.setAdapter(genders);
-
 
         context = getApplicationContext();
 
@@ -105,13 +85,14 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
         finished.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                feetNum = feet.getText().toString();
+                inchNum = inches.getText().toString();
+                curWeight = String.valueOf(currentweight.getValue());
+                gWeight = String.valueOf(goalweight.getValue());
+                aLevel = actspin.getSelectedItem().toString();
+                gender = genderspin.getSelectedItem().toString();
 
-                String feetNum = feet.getText().toString();
-                String inchNum = inches.getText().toString();
-                String curWeight = String.valueOf(currentweightslider.getValue());
-                String gWeight = String.valueOf(goalweightslider.getValue());
-                String aLevel = actspin.getSelectedItem().toString();
-                String gender = genderspin.getSelectedItem().toString();
+
 
                 if(TextUtils.isEmpty(feetNum) || TextUtils.isEmpty(inchNum) ||
                         TextUtils.isEmpty(curWeight) || TextUtils.isEmpty(gWeight)){
@@ -119,7 +100,8 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                             , Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    addDatatoFirebase(feetNum, inchNum, curWeight, gWeight, aLevel, gender);
+                    sendUserData();
+                    //addDatatoFirebase(feetNum, inchNum, curWeight, gWeight, aLevel, gender);
                     Intent done = new Intent(context, Login.class);
                     startActivity(done);
                     Toast.makeText(context, "Account has been created, " +
@@ -129,27 +111,15 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
             }
         });
     }
-    private void addDatatoFirebase(String feetNum, String inchNum, String curWeight, String gWeight,
-                                   String aLevel, String gender){
-        userInfo.setFeet(feetNum);
-        userInfo.setInches(inchNum);
-        userInfo.setCurrentweight(curWeight);
-        userInfo.setGoalweight(gWeight);
-        userInfo.setActivityLevel(aLevel);
-        userInfo.setGender(gender);
-        databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                databaseReference.setValue(userInfo);
-                Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onCancelled(@NonNull  DatabaseError error) {
-                Toast.makeText(context, "fail", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+    private void sendUserData() {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
+        UserProfile userProfile = new UserProfile(feetNum, inchNum, curWeight, gWeight ,aLevel, gender);
+        myRef.setValue(userProfile);
     }
+
+
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
