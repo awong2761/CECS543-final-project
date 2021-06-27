@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.slider.LabelFormatter;
@@ -36,7 +38,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
     private Context context;
     private EditText feet;
     private EditText inches;
-    private EditText goalweight;
+    private Slider goalweightslider;
     private Slider currentweightslider;
 
     FirebaseDatabase firebaseDatabase;
@@ -50,10 +52,19 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
 
         feet = findViewById(R.id.feet);
         inches = findViewById(R.id.inches);
-        goalweight = findViewById(R.id.goal_weight_input);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         currentweightslider = findViewById(R.id.current_weight_slider);
+        goalweightslider = findViewById(R.id.goal_weight_slider);
+
+        goalweightslider.setLabelFormatter(new LabelFormatter() {
+            @NonNull
+            @NotNull
+            @Override
+            public String getFormattedValue(float value) {
+                return String.format(Locale.US, "%.0f", value);
+            }
+        });
 
         currentweightslider.setLabelFormatter(new LabelFormatter() {
             @NonNull
@@ -70,18 +81,22 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
 
         // Spinner
         Spinner actspin = findViewById(R.id.act_level);
+        actspin.setPrompt("Activity Level");
         actspin.setOnItemSelectedListener(this);
         ArrayAdapter<String> levels = new ArrayAdapter<>(this, android.R.layout.
                 simple_spinner_dropdown_item, act_lvl);
         levels.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         actspin.setAdapter(levels);
 
+
         Spinner genderspin = findViewById(R.id.gender_spin);
-        actspin.setOnItemSelectedListener(this);
+        genderspin.setPrompt("Gender");
+        genderspin.setOnItemSelectedListener(this);
         ArrayAdapter<String> genders= new ArrayAdapter<>(this, android.R.layout.
                 simple_spinner_dropdown_item, gender);
         levels.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderspin.setAdapter(genders);
+
 
         context = getApplicationContext();
 
@@ -94,7 +109,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                 String feetNum = feet.getText().toString();
                 String inchNum = inches.getText().toString();
                 String curWeight = String.valueOf(currentweightslider.getValue());
-                String gWeight = goalweight.getText().toString();
+                String gWeight = String.valueOf(goalweightslider.getValue());
                 String aLevel = actspin.getSelectedItem().toString();
                 String gender = genderspin.getSelectedItem().toString();
 
