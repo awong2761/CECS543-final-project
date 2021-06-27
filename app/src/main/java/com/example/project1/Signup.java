@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -101,9 +103,22 @@ public class Signup extends AppCompatActivity {
                         @Override
                         public void onComplete(Task<AuthResult> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(context, "Registration Complete", Toast.LENGTH_LONG).show();
-                                data.AddCredential(user, pass);
-                                startActivity(toUserInfo);
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(username.getText().toString())
+                                        .build();
+
+
+                                user.updateProfile(profileUpdates)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(context, "Registration Complete", Toast.LENGTH_LONG).show();
+                                                    startActivity(toUserInfo);
+                                                }
+                                            }
+                                        });
                             }
                             else {
                                 FirebaseAuthException e = (FirebaseAuthException)task.getException();

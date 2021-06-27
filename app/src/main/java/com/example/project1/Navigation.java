@@ -58,7 +58,7 @@ public class Navigation extends AppCompatActivity {
 
         View headerView = navigationView.getHeaderView(0);
         drawerUsername = headerView.findViewById(R.id.drawer_username);
-        String user = getIntent().getStringExtra("username");
+        String user = getIntent().getStringExtra("displayName");
         drawerUsername.setText("Welcome " + user);
 
     }

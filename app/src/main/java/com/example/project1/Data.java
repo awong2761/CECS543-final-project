@@ -8,6 +8,8 @@ public class Data {
 
     // A hashmap data structure for holding usernames and passwords pair
     private static HashMap <String, String> hmCredentials = new HashMap<>();
+    // A hashmap data structure for holding usernames and email pair
+    private static HashMap <String, String> username_email = new HashMap<>();
 
     public Data(){
 
@@ -19,6 +21,10 @@ public class Data {
     // This method adds a new username and password to the hashmap
     public void AddCredential(String username, String password){
         hmCredentials.put(username,password);
+    }
+
+    public void AddUserEmail(String username, String email) {
+        username_email.put(username, email);
     }
 
     // This method checks if username exists in the hashmap

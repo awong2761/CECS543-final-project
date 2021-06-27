@@ -12,15 +12,15 @@
 
 
     <EditText
-        android:id="@+id/Username"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/buttonstyle2"
         android:backgroundTint="@null"
-        android:drawableLeft="@drawable/user_img"
+        android:drawableLeft="@drawable/ic_mail"
         android:drawablePadding="5dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="Email"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:paddingLeft="10dp"
@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Username"
+        app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintVertical_bias="0.121" />
 
     <Button
