@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.project1.ui.help.HelpFragment;
+
 import java.io.Serializable;
 
 /**
@@ -45,10 +47,12 @@ public class Login extends AppCompatActivity {
                 String pass = password.getText().toString();
 
                 Intent login = new Intent(context, Navigation.class);
+                Intent test = new Intent(context, HelpFragment.class);
 
                 // Checks to see if username and passwords checks out, if so it starts next activity
                 if(data.CheckCredentials(user, pass) == true){
                     login.putExtra("username", username.getText().toString());
+                    test.putExtra("username",username.getText().toString());
                     startActivity(login);
                 }
                 // Checks user name, if false send Toast that user does not exist
@@ -62,6 +66,7 @@ public class Login extends AppCompatActivity {
                     password.setText("");
                 }
             }
+
         });
 
         // Sign up button leads to signup activity page

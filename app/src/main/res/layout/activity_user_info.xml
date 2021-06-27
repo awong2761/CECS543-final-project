@@ -27,30 +27,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 
-    <CheckBox
-        android:id="@+id/male_chk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Male"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.238"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.093" />
-
-    <CheckBox
-        android:id="@+id/female_chk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Female"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.78"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.093" />
-
     <TextView
         android:id="@+id/height_txt"
         android:layout_width="match_parent"
@@ -147,28 +123,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.521" />
 
-    <EditText
-        android:id="@+id/current_weight_input"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/g_weight_txt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/c_weight_txt" />
-
     <TextView
         android:id="@+id/lbs_txt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:text="lbs."
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/g_weight_txt"
-        app:layout_constraintStart_toEndOf="@+id/current_weight_input"
-        app:layout_constraintTop_toBottomOf="@+id/c_weight_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/c_weight_txt"
+        tools:layout_editor_absoluteX="294dp" />
 
     <TextView
         android:id="@+id/lbs_txt2"
@@ -236,5 +199,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/act_level"
         app:layout_constraintVertical_bias="0.19" />
+
+    <Spinner
+        android:id="@+id/gender_spin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/height_txt"
+        app:layout_constraintTop_toBottomOf="@+id/gender_txt"
+        app:layout_constraintVertical_bias="0.372"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/currentweighttest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/g_weight_txt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/c_weight_txt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

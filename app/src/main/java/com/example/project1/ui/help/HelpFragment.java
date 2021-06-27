@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.content.Intent;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +19,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.project1.Data;
+import com.example.project1.Navigation;
 import com.example.project1.R;
 import com.example.project1.databinding.FragmentHelpBinding;
 import com.example.project1.ui.food.FoodFragment;
@@ -27,12 +32,18 @@ public class HelpFragment extends Fragment {
     private Context context1;
     private Button popchangepass;
     private Dialog diag1;
+    private EditText currentpass;
+    private EditText newpass;
+    Context context;
+    Navigation test;
+    Data data = new Data();
 
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         diag1 = new Dialog(context1);
+
     }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -67,10 +78,20 @@ public class HelpFragment extends Fragment {
         diag1.setCanceledOnTouchOutside(false);
         closepop = (TextView) diag1.findViewById(R.id.pass_close);
         changepass = (Button) diag1.findViewById(R.id.confirm_pass_change);
+        currentpass = (EditText) diag1.findViewById(R.id.edt_current_pass);
+        newpass = (EditText) diag1.findViewById(R.id.edt_new_pass);
         closepop.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 diag1.dismiss();
+            }
+        });
+        changepass.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                String currentpassenter = currentpass.getText().toString();
+                String newpassenter = currentpass.getText().toString();
+
             }
         });
         diag1.show();
