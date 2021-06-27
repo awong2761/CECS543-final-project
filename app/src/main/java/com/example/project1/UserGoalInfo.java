@@ -7,8 +7,8 @@ public class UserGoalInfo {
     private String goalweight;
     private String feet;
     private String inches;
-//    private int activitylevel;
-//    private String gender;
+    private String activitylevel;
+    private String gender;
 
     public UserGoalInfo(){
     }
@@ -48,17 +48,17 @@ public class UserGoalInfo {
     public void setInches(String inches){
         this.inches = inches;
     }
-//    public int getActivitylevel(){
-//        return activitylevel;
-//    }
-//    public void setActivitylevel(int activitylevel){
-//        this.activitylevel = activitylevel;
-//    }
-//    public String getGender(){
-//        return gender;
-//    }
-//    public void setGender(String gender){
-//        this.gender = gender;
-//    }
+    public String getActivityLevel(){
+        return activitylevel;
+    }
+    public void setActivityLevel(String activitylevel){
+        this.activitylevel = activitylevel;
+    }
+    public String getGender(){
+        return gender;
+    }
+    public void setGender(String gender){
+        this.gender = gender;
+    }
 
 }

@@ -82,6 +82,8 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                 String inchNum = inches.getText().toString();
                 String curWeight = currentweight.getText().toString();
                 String gWeight = goalweight.getText().toString();
+                String aLevel = actspin.getSelectedItem().toString();
+                String gender = genderspin.getSelectedItem().toString();
 
                 if(TextUtils.isEmpty(feetNum) || TextUtils.isEmpty(inchNum) ||
                         TextUtils.isEmpty(curWeight) || TextUtils.isEmpty(gWeight)){
@@ -89,21 +91,24 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                             , Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    addDatatoFirebase(feetNum, inchNum, curWeight, gWeight);
+                    addDatatoFirebase(feetNum, inchNum, curWeight, gWeight, aLevel, gender);
                     Intent done = new Intent(context, Login.class);
                     startActivity(done);
-                    Toast.makeText(context, "Account has been created" +
+                    Toast.makeText(context, "Account has been created, " +
                             "you can now login", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
     }
-    private void addDatatoFirebase(String feetNum, String inchNum, String curWeight, String gWeight){
+    private void addDatatoFirebase(String feetNum, String inchNum, String curWeight, String gWeight,
+                                   String aLevel, String gender){
         userInfo.setFeet(feetNum);
         userInfo.setInches(inchNum);
         userInfo.setCurrentweight(curWeight);
         userInfo.setGoalweight(gWeight);
+        userInfo.setActivityLevel(aLevel);
+        userInfo.setGender(gender);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
