@@ -3,7 +3,7 @@ package com.example.project1;
 import android.widget.Toast;
 
 import java.util.HashMap;
-
+// Test
 public class Data {
 
     // A hashmap data structure for holding usernames and passwords pair
