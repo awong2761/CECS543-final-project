@@ -24,6 +24,12 @@ import com.example.project1.Navigation;
 import com.example.project1.R;
 import com.example.project1.databinding.FragmentHelpBinding;
 import com.example.project1.ui.food.FoodFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import org.jetbrains.annotations.NotNull;
 
 public class HelpFragment extends Fragment {
 
@@ -34,15 +40,19 @@ public class HelpFragment extends Fragment {
     private Dialog diag1;
     private EditText currentpass;
     private EditText newpass;
+    private FirebaseUser user;
+    private TextView closepop;
+    private Button changepass;
     Context context;
-    Navigation test;
-    Data data = new Data();
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         diag1 = new Dialog(context1);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        context = getActivity().getApplicationContext();
 
     }
     @Override
@@ -72,8 +82,7 @@ public class HelpFragment extends Fragment {
         context1 = context;
     }
     public void ShowPopup(View v){
-        TextView closepop;
-        Button changepass;
+        diag1.show();
         diag1.setContentView(R.layout.pass_change_pop);
         diag1.setCanceledOnTouchOutside(false);
         closepop = (TextView) diag1.findViewById(R.id.pass_close);
@@ -86,15 +95,27 @@ public class HelpFragment extends Fragment {
                 diag1.dismiss();
             }
         });
+
         changepass.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 String currentpassenter = currentpass.getText().toString();
-                String newpassenter = currentpass.getText().toString();
+                String newpassenter = newpass.getText().toString();
+                user.updatePassword(newpassenter).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+                        if(task.isSuccessful()) {
+                            Toast.makeText(context, "Password Changed", Toast.LENGTH_SHORT).show();
+                            Intent nav = new Intent(context, Navigation.class);
+                            startActivity(nav);
+                        }
 
+                    }
+                });
+                diag1.dismiss();
             }
         });
-        diag1.show();
+
     }
 
 }

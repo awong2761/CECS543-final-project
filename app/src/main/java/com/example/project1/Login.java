@@ -52,7 +52,7 @@ public class Login extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        if(user == null) {
+        if(user != null) {
             Intent login = new Intent(context, Navigation.class);
             finish();
             startActivity(login);

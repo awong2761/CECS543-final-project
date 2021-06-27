@@ -17,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1.databinding.ActivityNavigationBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 import static androidx.navigation.Navigation.findNavController;
@@ -28,10 +29,13 @@ public class Navigation extends AppCompatActivity {
     private DrawerLayout drawer;
     private TextView drawerUsername;
     private NavigationView navigationView;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         binding = ActivityNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -68,6 +72,7 @@ public class Navigation extends AppCompatActivity {
 
     public void logoutClick() {
         navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(menuItem -> {
+            firebaseAuth.signOut();
             Intent logout = new Intent(getApplicationContext(), Login.class);
             finish();
             startActivity(logout);
