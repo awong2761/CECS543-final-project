@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +36,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
     private EditText goalweight;
 
     FirebaseDatabase firebaseDatabase;
+    FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     UserGoalInfo userInfo;
 
@@ -48,9 +50,9 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
         inches = findViewById(R.id.inches);
         currentweight = findViewById(R.id.currentweighttest);
         goalweight = findViewById(R.id.goal_weight_input);
-
+        firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("UserGoalInfo");
+
 
         userInfo = new UserGoalInfo();
 
@@ -109,7 +111,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
         userInfo.setGoalweight(gWeight);
         userInfo.setActivityLevel(aLevel);
         userInfo.setGender(gender);
-
+        databaseReference = firebaseDatabase.getReference(firebaseAuth.getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

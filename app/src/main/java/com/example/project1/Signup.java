@@ -124,7 +124,6 @@ public class Signup extends AppCompatActivity {
                                         FirebaseAuthException e = (FirebaseAuthException)task.getException();
                                         Toast.makeText(context, "Failed Registration: " + e.getMessage(), Toast.LENGTH_LONG).show();
                                     }
-
                                 }
                             });
                 }
