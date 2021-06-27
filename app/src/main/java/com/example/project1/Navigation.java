@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -18,6 +19,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1.databinding.ActivityNavigationBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 import static androidx.navigation.Navigation.findNavController;
@@ -28,6 +30,7 @@ public class Navigation extends AppCompatActivity {
     private ActivityNavigationBinding binding;
     private DrawerLayout drawer;
     private TextView drawerUsername;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,23 +42,34 @@ public class Navigation extends AppCompatActivity {
         setSupportActionBar(binding.appBarNavigation.toolbar);
 
         drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
+        navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_help, R.id.nav_food)
+                R.id.nav_home, R.id.nav_help, R.id.nav_food, R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = findNavController(this, R.id.nav_host_fragment_content_navigation);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        // call if logout is clicked
+        logoutClick();
+
         View headerView = navigationView.getHeaderView(0);
         drawerUsername = headerView.findViewById(R.id.drawer_username);
         String user = getIntent().getStringExtra("username");
         drawerUsername.setText("Welcome " + user);
 
+    }
 
+    public void logoutClick() {
+        navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(menuItem -> {
+            Intent logout = new Intent(getApplicationContext(), Login.class);
+            finish();
+            startActivity(logout);
+            return true;
+        });
     }
 
     @Override
@@ -74,12 +88,11 @@ public class Navigation extends AppCompatActivity {
                 if(selection.equals("Developers")) {
                     Intent devInfo = new Intent(context, DevInfo.class);
                     startActivity(devInfo);
+                    break;
                 }
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 
     @Override
     public boolean onSupportNavigateUp() {
