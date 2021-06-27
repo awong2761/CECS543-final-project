@@ -106,8 +106,8 @@ public class Login extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(userName, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
+                progressDialog.dismiss();
                 if(task.isSuccessful()) {
-                    progressDialog.dismiss();
                     Intent login = new Intent(context, Navigation.class);
                     FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
                     String displayName = user.getDisplayName();
