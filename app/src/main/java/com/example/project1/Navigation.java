@@ -19,7 +19,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1.databinding.ActivityNavigationBinding;
-import com.google.firebase.auth.FirebaseAuth;
 
 
 import static androidx.navigation.Navigation.findNavController;
@@ -58,7 +57,7 @@ public class Navigation extends AppCompatActivity {
 
         View headerView = navigationView.getHeaderView(0);
         drawerUsername = headerView.findViewById(R.id.drawer_username);
-        String user = getIntent().getStringExtra("username");
+        String user = getIntent().getStringExtra("displayName");
         drawerUsername.setText("Welcome " + user);
 
     }
@@ -100,4 +99,6 @@ public class Navigation extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 }
