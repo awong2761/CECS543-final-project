@@ -22,5 +22,4 @@
     <string name="menu_food">Food</string>
 
     <string name="change_pass">Change Password</string>
-    <string name="menu_logout">Logout</string>
 </resources>
