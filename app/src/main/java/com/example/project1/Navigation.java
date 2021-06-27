@@ -19,7 +19,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1.databinding.ActivityNavigationBinding;
-import com.google.firebase.auth.FirebaseAuth;
 
 
 import static androidx.navigation.Navigation.findNavController;

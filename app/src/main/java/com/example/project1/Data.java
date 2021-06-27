@@ -3,18 +3,14 @@ package com.example.project1;
 import android.widget.Toast;
 
 import java.util.HashMap;
-
+// Test
 public class Data {
 
     // A hashmap data structure for holding usernames and passwords pair
     private static HashMap <String, String> hmCredentials = new HashMap<>();
-    // A hashmap data structure for holding usernames and email pair
-    private static HashMap <String, String> username_email = new HashMap<>();
 
     public Data(){
-
         // Adding some items into the hashmap table
-
         hmCredentials.put("1", "1");
     }
 
@@ -22,11 +18,6 @@ public class Data {
     public void AddCredential(String username, String password){
         hmCredentials.put(username,password);
     }
-
-    public void AddUserEmail(String username, String email) {
-        username_email.put(username, email);
-    }
-
     // This method checks if username exists in the hashmap
     public Boolean CheckUsername(String username){
         Boolean  retval = true;
@@ -50,6 +41,12 @@ public class Data {
         else
             retval = false;
         return retval;
+    }
+    public String getPassword(String user){
+        return hmCredentials.get(user);
+    }
+    public void setNewPass(String username, String password){
+        hmCredentials.put(username, password);
     }
 
 }

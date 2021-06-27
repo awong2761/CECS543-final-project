@@ -81,7 +81,7 @@ public class Signup extends AppCompatActivity {
                 if(email.getText().toString().isEmpty()){
                     Toast.makeText(context, "Enter an email address", Toast.LENGTH_SHORT).show();
                     correct = false;
-                // Checks email format and returns invalid if not in correct format
+                    // Checks email format and returns invalid if not in correct format
                 } else if(!email.getText().toString().trim().matches(emailPattern)) {
                     Toast.makeText(context, "Invalid email address", Toast.LENGTH_SHORT).show();
                     correct = false;
@@ -100,33 +100,33 @@ public class Signup extends AppCompatActivity {
                 if(correct) {
                     firebaseAuth.createUserWithEmailAndPassword(emailaddress, pass)
                             .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(username.getText().toString())
-                                        .build();
+                                @Override
+                                public void onComplete(Task<AuthResult> task) {
+                                    if(task.isSuccessful()){
+                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                                .setDisplayName(username.getText().toString())
+                                                .build();
 
 
-                                user.updateProfile(profileUpdates)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                    Toast.makeText(context, "Registration Complete", Toast.LENGTH_LONG).show();
-                                                    startActivity(toUserInfo);
-                                                }
-                                            }
-                                        });
-                            }
-                            else {
-                                FirebaseAuthException e = (FirebaseAuthException)task.getException();
-                                Toast.makeText(context, "Failed Registration: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                            }
+                                        user.updateProfile(profileUpdates)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            Toast.makeText(context, "Registration Complete", Toast.LENGTH_LONG).show();
+                                                            startActivity(toUserInfo);
+                                                        }
+                                                    }
+                                                });
+                                    }
+                                    else {
+                                        FirebaseAuthException e = (FirebaseAuthException)task.getException();
+                                        Toast.makeText(context, "Failed Registration: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
 
-                        }
-                    });
+                                }
+                            });
                 }
             }
         });
