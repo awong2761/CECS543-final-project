@@ -8,8 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,6 +41,10 @@ public class Login extends AppCompatActivity {
     private ProgressDialog progressDialog;
     Data data = new Data();
 
+    // Splash stuff
+    Animation topAnimation, botAnimation;
+    ImageView logo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +64,16 @@ public class Login extends AppCompatActivity {
             finish();
             startActivity(login);
         }
+
+        topAnimation = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        botAnimation = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+        logo = findViewById(R.id.dumbellLogo);
+
+        logo.setAnimation(botAnimation);
+        email.setAnimation(topAnimation);
+        password.setAnimation(topAnimation);
+        btnSignup.setAnimation(topAnimation);
+        btnLogin.setAnimation(topAnimation);
 
 
 
