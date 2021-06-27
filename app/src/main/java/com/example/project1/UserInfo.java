@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.material.slider.LabelFormatter;
+import com.google.android.material.slider.Slider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Locale;
+
 public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     String[] gender = {"Male", "Female"};
@@ -32,15 +36,13 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
     private Context context;
     private EditText feet;
     private EditText inches;
-    private EditText currentweight;
     private EditText goalweight;
+    private Slider currentweightslider;
 
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     UserGoalInfo userInfo;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +50,19 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
 
         feet = findViewById(R.id.feet);
         inches = findViewById(R.id.inches);
-        currentweight = findViewById(R.id.currentweighttest);
         goalweight = findViewById(R.id.goal_weight_input);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
+        currentweightslider = findViewById(R.id.current_weight_slider);
+
+        currentweightslider.setLabelFormatter(new LabelFormatter() {
+            @NonNull
+            @NotNull
+            @Override
+            public String getFormattedValue(float value) {
+                return String.format(Locale.US, "%.0f", value);
+            }
+        });
 
 
         userInfo = new UserGoalInfo();
@@ -82,7 +93,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
 
                 String feetNum = feet.getText().toString();
                 String inchNum = inches.getText().toString();
-                String curWeight = currentweight.getText().toString();
+                String curWeight = String.valueOf(currentweightslider.getValue());
                 String gWeight = goalweight.getText().toString();
                 String aLevel = actspin.getSelectedItem().toString();
                 String gender = genderspin.getSelectedItem().toString();
@@ -124,8 +135,6 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
             }
         });
     }
-
-
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

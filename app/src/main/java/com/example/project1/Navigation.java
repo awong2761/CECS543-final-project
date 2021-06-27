@@ -65,7 +65,7 @@ public class Navigation extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        Intent profile = new Intent(getApplicationContext(), UserInfo.class);
+        Intent profile = new Intent(getApplicationContext(), Profile.class);
         finish();
         startActivity(profile);
     }
