@@ -33,6 +33,7 @@ public class Navigation extends AppCompatActivity {
     private TextView drawerUsername;
     private NavigationView navigationView;
     private FirebaseAuth firebaseAuth;
+    private String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,13 +63,14 @@ public class Navigation extends AppCompatActivity {
 
         View headerView = navigationView.getHeaderView(0);
         drawerUsername = headerView.findViewById(R.id.drawer_username);
-        String user = getIntent().getStringExtra("displayName");
+        user = getIntent().getStringExtra("displayName");
         drawerUsername.setText("Welcome " + user);
 
     }
 
     public void onClick(View v) {
         Intent profile = new Intent(getApplicationContext(), Profile.class);
+        profile.putExtra("displayName", user);
         finish();
         startActivity(profile);
     }
