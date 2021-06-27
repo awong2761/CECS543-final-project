@@ -108,7 +108,6 @@ public class Signup extends AppCompatActivity {
                                                 .setDisplayName(username.getText().toString())
                                                 .build();
 
-
                                         user.updateProfile(profileUpdates)
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                     @Override

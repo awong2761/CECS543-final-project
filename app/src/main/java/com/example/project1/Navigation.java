@@ -27,7 +27,6 @@ public class Navigation extends AppCompatActivity {
     private ActivityNavigationBinding binding;
     private DrawerLayout drawer;
     private TextView drawerUsername;
-    private TextView drawerProfile;
     private NavigationView navigationView;
 
     @Override
@@ -54,9 +53,6 @@ public class Navigation extends AppCompatActivity {
         // call if logout is clicked
         logoutClick();
 
-        //call if profile txt is clicked
-//        profileClick();
-
         View headerView = navigationView.getHeaderView(0);
         drawerUsername = headerView.findViewById(R.id.drawer_username);
         String user = getIntent().getStringExtra("displayName");
@@ -65,7 +61,7 @@ public class Navigation extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        Intent profile = new Intent(getApplicationContext(), UserInfo.class);
+        Intent profile = new Intent(getApplicationContext(), Profile.class);
         finish();
         startActivity(profile);
     }
