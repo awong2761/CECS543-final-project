@@ -86,27 +86,6 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 validate (email.getText().toString(), password.getText().toString());
-//                String email = username.getText().toString();
-//                String pass = password.getText().toString();
-//
-//                Intent login = new Intent(context, Navigation.class);
-//
-//
-//                // Checks to see if username and passwords checks out, if so it starts next activity
-//                if(data.CheckCredentials(user, pass) == true){
-//                    login.putExtra("username", username.getText().toString());
-//                    startActivity(login);
-//                }
-//                // Checks user name, if false send Toast that user does not exist
-//                else if(data.CheckUsername(user) == false) {
-//                    Toast.makeText(context, "Username does not exist", Toast.LENGTH_SHORT).show();
-//                    password.setText("");
-//                }
-//                // Notifies that password is incorrect if username checks out
-//                else {
-//                    Toast.makeText(context, "Incorrect password", Toast.LENGTH_SHORT).show();
-//                    password.setText("");
-//                }
             }
 
         });

@@ -109,6 +109,7 @@ public class Signup extends AppCompatActivity {
                                                     public void onComplete(@NonNull @NotNull Task<Void> task) {
                                                         if (task.isSuccessful()) {
                                                             Toast.makeText(context, "Registration Complete", Toast.LENGTH_LONG).show();
+                                                            finish();
                                                             startActivity(toUserInfo);
                                                         }
                                                     }

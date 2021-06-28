@@ -106,6 +106,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                     FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
                     String displayName = user.getDisplayName();
                     done.putExtra("displayName", displayName);
+                    finish();
                     startActivity(done);
                     Toast.makeText(context, "Your account has been created!"
                             , Toast.LENGTH_SHORT).show();
