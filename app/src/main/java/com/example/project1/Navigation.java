@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
-import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -65,6 +63,7 @@ public class Navigation extends AppCompatActivity {
         drawerUsername = headerView.findViewById(R.id.drawer_username);
         user = getIntent().getStringExtra("displayName");
         drawerUsername.setText("Welcome " + user);
+
 
     }
 
