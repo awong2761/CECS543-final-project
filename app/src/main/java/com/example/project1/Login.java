@@ -45,7 +45,6 @@ public class Login extends AppCompatActivity {
     private Context context;
     private ProgressDialog progressDialog;
     private TextView loginlogotext;
-    Data data = new Data();
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {

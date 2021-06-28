@@ -32,7 +32,6 @@ public class Signup extends AppCompatActivity {
     private EditText phone;
     private Context context;
     private FirebaseAuth firebaseAuth;
-    Data data = new Data();
 
 
     @Override
@@ -64,10 +63,6 @@ public class Signup extends AppCompatActivity {
 
                 boolean correct = true;
                 // Checks to see if username already exists in database
-                if(data.CheckUsername(user)) {
-                    Toast.makeText(context, "Username already exists", Toast.LENGTH_SHORT).show();
-                    correct = false;
-                }
                 if(pass.length() < 6) {
                     Toast.makeText(context, "Password needs to be longer than 6 characters", Toast.LENGTH_SHORT).show();
                     correct = false;
