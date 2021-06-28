@@ -59,6 +59,9 @@ public class Navigation extends AppCompatActivity {
         // call if logout is clicked
         logoutClick();
 
+        // call if food is clicked
+        foodClick();
+
         View headerView = navigationView.getHeaderView(0);
         drawerUsername = headerView.findViewById(R.id.drawer_username);
         user = getIntent().getStringExtra("displayName");
@@ -72,6 +75,16 @@ public class Navigation extends AppCompatActivity {
         profile.putExtra("displayName", user);
         finish();
         startActivity(profile);
+    }
+
+    public void foodClick() {
+        navigationView.getMenu().findItem(R.id.nav_food).setOnMenuItemClickListener(menuItem -> {
+           Intent food = new Intent(getApplicationContext(), Food.class);
+           food.putExtra("displayName", user);
+           finish();
+           startActivity(food);
+           return true;
+        });
     }
 
     public void logoutClick() {
