@@ -155,7 +155,7 @@ public class Food extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.foodName.setText("Food: " + foodItems.get(position));
+            holder.foodName.setText(foodItems.get(position));
             holder.brandView.setText("Brand: " + brandNames.get(position));
             holder.calorieView.setText("Calories: " + nf_calories.get(position));
 
