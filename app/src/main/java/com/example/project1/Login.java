@@ -94,6 +94,7 @@ public class Login extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent signUp = new Intent(context, Signup.class);
+                finish();
                 startActivity(signUp);
             }
         });
