@@ -102,7 +102,6 @@ public class Signup extends AppCompatActivity {
                                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                                 .setDisplayName(username.getText().toString())
                                                 .build();
-                                        startActivity(toUserInfo);
 
                                         user.updateProfile(profileUpdates)
                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {

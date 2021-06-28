@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.material.slider.Slider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -102,6 +103,9 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                     sendUserData();
                     //addDatatoFirebase(feetNum, inchNum, curWeight, gWeight, aLevel, gender);
                     Intent done = new Intent(context, Navigation.class);
+                    FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
+                    String displayName = user.getDisplayName();
+                    done.putExtra("displayName", displayName);
                     startActivity(done);
                     Toast.makeText(context, "Your account has been created!"
                             , Toast.LENGTH_SHORT).show();
