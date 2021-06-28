@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -32,6 +33,7 @@ public class Navigation extends AppCompatActivity {
     private NavigationView navigationView;
     private FirebaseAuth firebaseAuth;
     private String user;
+    public static ImageView profilepic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,17 @@ public class Navigation extends AppCompatActivity {
         drawerUsername = headerView.findViewById(R.id.drawer_username);
         user = getIntent().getStringExtra("displayName");
         drawerUsername.setText("Welcome " + user);
+        profilepic = headerView.findViewById(R.id.navProfilePic);
+
+//        String setImagePic = getIntent().getStringExtra("image");
+//        if(setImagePic != null){
+//            switch(setImagePic){
+//                case "super": profilepic.setImageResource(R.drawable.pic1); break;
+//                case "bat": profilepic.setImageResource(R.drawable.pic2); break;
+//                case "wonder": profilepic.setImageResource(R.drawable.pic3); break;
+//            }
+//        }
+
 
 
     }
