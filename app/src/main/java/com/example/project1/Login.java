@@ -45,7 +45,7 @@ public class Login extends AppCompatActivity {
     private Context context;
     private ProgressDialog progressDialog;
     private TextView loginlogotext;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

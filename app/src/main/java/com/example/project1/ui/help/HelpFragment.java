@@ -36,6 +36,7 @@ public class HelpFragment extends Fragment {
     private Dialog diag1;
     private Dialog diag2;
 
+    private Button popchangepic;
     private Button popchangepass;
     private TextView closepop;
     private Button changepass;
@@ -71,6 +72,7 @@ public class HelpFragment extends Fragment {
                 new ViewModelProvider(this).get(HelpViewModel.class);
         binding = FragmentHelpBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
         popchangepass = root.findViewById(R.id.changepass_help);
         popchangepass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +80,13 @@ public class HelpFragment extends Fragment {
                 ShowPopup(view);
             }
         });
+
+        popchangepic = root.findViewById(R.id.changepic_help);
+        popchangepic.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){ ShowPopup2(view);}
+        });
+
         return root;
     }
     @Override
@@ -89,6 +98,7 @@ public class HelpFragment extends Fragment {
     public void onAttach(Context context){
         super.onAttach(context);
         context1 = context;
+        context2 = context;
     }
     // Method for creating password change popup
     public void ShowPopup(View v){
