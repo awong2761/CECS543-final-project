@@ -101,11 +101,10 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                 else{
                     sendUserData();
                     //addDatatoFirebase(feetNum, inchNum, curWeight, gWeight, aLevel, gender);
-                    firebaseAuth.signOut();
-                    Intent done = new Intent(context, Login.class);
+                    Intent done = new Intent(context, Navigation.class);
                     startActivity(done);
-                    Toast.makeText(context, "Account has been created, " +
-                            "you can now login", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Your account has been created!"
+                            , Toast.LENGTH_SHORT).show();
                 }
 
             }

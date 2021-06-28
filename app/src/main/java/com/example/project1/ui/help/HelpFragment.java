@@ -31,6 +31,7 @@ public class HelpFragment extends Fragment {
 
     private HelpViewModel helpViewModel;
     private FragmentHelpBinding binding;
+    String imgSelected = "hold";
 
     // Popup
     private Dialog diag1;
@@ -151,9 +152,37 @@ public class HelpFragment extends Fragment {
             @Override
             public void onClick(View view){ diag2.dismiss(); }
         });
+        pic1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){ imgSelected = "super";
+                Toast.makeText(context, "Selected!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        pic2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){ imgSelected = "bat";
+                Toast.makeText(context, "Selected!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        pic3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){ imgSelected = "wonder";
+                Toast.makeText(context, "Selected!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        changepic.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                switch(imgSelected){
+                    case "super": Navigation.profilepic.setImageResource(R.drawable.pic1); break;
+                    case "bat": Navigation.profilepic.setImageResource(R.drawable.pic2); break;
+                    case "wonder": Navigation.profilepic.setImageResource(R.drawable.pic3); break;
+                }
+            }
+        });
+    }
 
-
-
+    public void clickNew(View v){
     }
 
 }
