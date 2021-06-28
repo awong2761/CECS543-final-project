@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private TextView loginlogotext;
     Data data = new Data();
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,7 +139,6 @@ public class Login extends AppCompatActivity {
                     startActivity(login);
                 } else {
                     Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
-
                 }
             }
         });

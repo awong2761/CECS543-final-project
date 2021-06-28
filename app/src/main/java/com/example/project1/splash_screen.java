@@ -55,7 +55,6 @@ public class splash_screen extends AppCompatActivity {
                 Pair[] pairs = new Pair[2];
                 pairs[0] = new Pair<View, String>(logosplash, "logo_image");
                 pairs[1] = new Pair<View, String>(logotext, "logo_text");
-
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation
                         (splash_screen.this, pairs);
                 startActivity(intent, options.toBundle());

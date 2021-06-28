@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.content.Intent;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,14 +36,26 @@ public class HelpFragment extends Fragment {
 
     private HelpViewModel helpViewModel;
     private FragmentHelpBinding binding;
-    private Context context1;
-    private Button popchangepass;
+
+    // Popup
     private Dialog diag1;
-    private EditText currentpass;
-    private EditText newpass;
-    private FirebaseUser user;
+    private Dialog diag2;
+
+    private Button popchangepass;
     private TextView closepop;
     private Button changepass;
+    private EditText currentpass;
+    private EditText newpass;
+
+    private ImageView pic1;
+    private ImageView pic2;
+    private ImageView pic3;
+    private Button changepic;
+    private TextView closepop2;
+
+    private Context context1;
+    private Context context2;
+    private FirebaseUser user;
     Context context;
 
 
@@ -51,6 +64,7 @@ public class HelpFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         diag1 = new Dialog(context1);
+        diag2 = new Dialog(context2);
         user = FirebaseAuth.getInstance().getCurrentUser();
         context = getActivity().getApplicationContext();
 
@@ -81,6 +95,7 @@ public class HelpFragment extends Fragment {
         super.onAttach(context);
         context1 = context;
     }
+    // Method for creating password change popup
     public void ShowPopup(View v){
         diag1.show();
         diag1.setContentView(R.layout.pass_change_pop);
@@ -115,6 +130,24 @@ public class HelpFragment extends Fragment {
                 diag1.dismiss();
             }
         });
+
+    }
+    // Method for creating profile picture change popup
+    public void ShowPopup2(View v){
+        diag2.show();
+        diag2.setContentView(R.layout.profile_pic_change_pop);
+        diag2.setCanceledOnTouchOutside(false);
+        closepop2 = (TextView) diag2.findViewById(R.id.pic_close);
+        pic1 = (ImageView) diag2.findViewById(R.id.first_pic);
+        pic2 = (ImageView) diag2.findViewById(R.id.second_pic);
+        pic3 = (ImageView) diag2.findViewById(R.id.third_pic);
+        changepic = (Button) diag2.findViewById(R.id.confirm_pic_change);
+        closepop2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){ diag2.dismiss(); }
+        });
+
+
 
     }
 
