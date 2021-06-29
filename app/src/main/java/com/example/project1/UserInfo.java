@@ -46,6 +46,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
     String gender;
     String userAge;
     String caloriesLeft;
+    int caloriesLeftNum;
     double height;
     double kgWeight;
 
@@ -100,22 +101,33 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                 userAge = age.getText().toString();
 
                 height = (Integer.parseInt(feetNum)*30.48) + (Integer.parseInt(inchNum)*2.54);
-                kgWeight = (Integer.parseInt(curWeight)*0.453592);
-
+                kgWeight = (Double.parseDouble(curWeight)*0.453592);
 
 
                 if(gender == "Male") {
-                    caloriesLeft = (int)(13.397*(Integer.parseInt(gWeight)) + (4.799));
-                    if(aLevel == "Low") {
-                        caloriesLeft += 100;
-                    }
-                    if(aLevel == "Moderate") {
-                        caloriesLeft += 200;
-                    }
-                    if(aLevel == "High") {
-                        caloriesLeft += 300;
-                    }
+                    caloriesLeftNum = (int)(10*(Double.parseDouble(gWeight)) + (6.25*height) - (5*(Integer.parseInt(userAge))) + 5);
                 }
+                else {
+                    caloriesLeftNum = (int)((10*(Double.parseDouble(gWeight))) + (6.25*height) - (5*(Integer.parseInt(userAge))) - 161);
+                }
+
+                if(aLevel == "Low") {
+                    caloriesLeftNum += 100;
+                }
+                if(aLevel == "Moderate") {
+                    caloriesLeftNum += 150;
+                }
+                if(aLevel == "High") {
+                    caloriesLeftNum += 200;
+                }
+                //lose 1 lb per week
+                if(Double.parseDouble(gWeight) < Double.parseDouble(curWeight)) {
+                    caloriesLeft = String.valueOf(caloriesLeftNum -= 500);
+                }
+                //gain 1lb per week
+                else
+                    caloriesLeft = String.valueOf(caloriesLeftNum += 500);
+
 
 
                 if(TextUtils.isEmpty(feetNum) || TextUtils.isEmpty(inchNum) ||

@@ -1,6 +1,10 @@
 package com.example.project1.ui.home;
 
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
 import android.os.Bundle;
+import android.text.TextPaint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,13 +48,24 @@ public class HomeFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         userData = FirebaseDatabase.getInstance();
 
+        TextPaint paint = calorieDisplay.getPaint();
+        float width = paint.measureText(calorieDisplay.getText().toString());
+        Shader textShader = new LinearGradient(0, 0, width, calorieDisplay.getTextSize(),
+                new int[]{
+                        Color.parseColor("#3DBDB0"),
+                        Color.parseColor("#04B5CE"),
+                }, null, Shader.TileMode.CLAMP);
+        calorieDisplay.getPaint().setShader(textShader);
+        calorieDisplay.setTextColor(Color.parseColor("#3DBDB0"));
+
         DatabaseReference databaseReference = userData.getReference(firebaseAuth.getUid());
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 UserProfile userProfile = snapshot.getValue(UserProfile.class);
-                calorieDisplay.setText("Calories: " + userProfile.getCaloriesLeft());
+                calorieDisplay.setText(userProfile.getCaloriesLeft());
+
             }
 
             @Override
