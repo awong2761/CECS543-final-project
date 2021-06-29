@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
@@ -30,11 +31,15 @@ public class Food extends AppCompatActivity {
     private Toolbar toolbar;
     private String user;
     private ProgressDialog pDialog;
+    private SearchView sv;
+    private MenuItem searchBar;
 
     private static final String appKey = "7f277e1bb0cb1d3b0b756e3cf375365c";
     private static final String appId = "7da7c17c";
-    private String baseURL = "https://api.nutritionix.com/v1_1/search/?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=" +
+    private String baseURL = "https://api.nutritionix.com/v1_1/search/";
+    private String baseURL2 = "?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=" +
             appId + "&appKey=" + appKey;
+    private String query;
 
     ArrayList<String> foodItems;
     ArrayList<String> brandNames;
@@ -49,7 +54,6 @@ public class Food extends AppCompatActivity {
         foodItems = new ArrayList<>();
         brandNames = new ArrayList<>();
         nf_calories = new ArrayList<>();
-
 
         toolbar = findViewById(R.id.food_toolbar);
         setSupportActionBar(toolbar);
@@ -66,7 +70,7 @@ public class Food extends AppCompatActivity {
             super.onPreExecute();
             pDialog = new ProgressDialog(Food.this);
             pDialog.setMessage("Searching...");
-            pDialog.setCancelable(false);
+            pDialog.setCancelable(true);
             pDialog.show();
         }
 
@@ -74,12 +78,15 @@ public class Food extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             HttpHandler sh = new HttpHandler();
 
-            String jsonStr = sh.makeServiceCall(baseURL);
+            String jsonStr = sh.makeServiceCall(baseURL + query + baseURL2);
 
             if(jsonStr != null)
                 try{
                     JSONObject jsonObject = new JSONObject(jsonStr);
                     JSONArray hits = jsonObject.getJSONArray("hits");
+                    foodItems.clear();
+                    brandNames.clear();
+                    nf_calories.clear();
                     for(int i = 0; i < hits.length(); i++){
                         JSONObject d = hits.getJSONObject(i);
                         JSONObject fields = d.getJSONObject("fields");
@@ -118,6 +125,25 @@ public class Food extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.navigation, menu);
         menu.findItem(R.id.action_settings).setVisible(false);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        sv = (SearchView) searchItem.getActionView();
+
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                String userSearchParse = s.replace(" ", "%20");
+                query = userSearchParse;
+                new GetFood().execute();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
         return true;
     }
 
@@ -129,6 +155,7 @@ public class Food extends AppCompatActivity {
                 home.putExtra("displayName", user);
                 finish();
                 startActivity(home);
+                break;
         }
         return true;
     }
