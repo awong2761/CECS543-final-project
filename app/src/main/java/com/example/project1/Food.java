@@ -17,8 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
-
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,6 +51,7 @@ public class Food extends AppCompatActivity {
         foodItems = new ArrayList<>();
         brandNames = new ArrayList<>();
         nf_calories = new ArrayList<>();
+        pDialog = new ProgressDialog(Food.this);
 
         toolbar = findViewById(R.id.food_toolbar);
         setSupportActionBar(toolbar);
@@ -67,7 +66,6 @@ public class Food extends AppCompatActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            pDialog = new ProgressDialog(Food.this);
             pDialog.setMessage("Searching...");
             pDialog.setCancelable(true);
             pDialog.show();
@@ -107,6 +105,7 @@ public class Food extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+
 
             if(pDialog.isShowing()) {
                 pDialog.dismiss();
