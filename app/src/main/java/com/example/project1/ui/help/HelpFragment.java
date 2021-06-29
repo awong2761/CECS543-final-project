@@ -27,6 +27,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class HelpFragment extends Fragment {
 
     private HelpViewModel helpViewModel;
@@ -55,6 +57,7 @@ public class HelpFragment extends Fragment {
     private FirebaseUser user;
     Context context;
 
+    private ArrayList<String> selected;
 
 
     @Override
@@ -64,6 +67,7 @@ public class HelpFragment extends Fragment {
         diag2 = new Dialog(context2);
         user = FirebaseAuth.getInstance().getCurrentUser();
         context = getActivity().getApplicationContext();
+        selected = new ArrayList<String>();
 
     }
     @Override
@@ -155,19 +159,37 @@ public class HelpFragment extends Fragment {
         pic1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){ imgSelected = "super";
-                Toast.makeText(context, "Selected!", Toast.LENGTH_SHORT).show();
+                if(!selected.isEmpty()){
+                    pic2.setImageResource(R.drawable.batman);
+                    pic3.setImageResource(R.drawable.wonder);
+                }
+                pic1.setImageResource(R.drawable.supermanselected);
+                selected.clear();
+                selected.add("super");
             }
         });
         pic2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){ imgSelected = "bat";
-                Toast.makeText(context, "Selected!", Toast.LENGTH_SHORT).show();
+                if(!selected.isEmpty()){
+                    pic1.setImageResource(R.drawable.superman);
+                    pic3.setImageResource(R.drawable.wonder);
+                }
+                pic2.setImageResource(R.drawable.batmanselected);
+                selected.clear();
+                selected.add("bat");
             }
         });
         pic3.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){ imgSelected = "wonder";
-                Toast.makeText(context, "Selected!", Toast.LENGTH_SHORT).show();
+                if(!selected.isEmpty()){
+                    pic1.setImageResource(R.drawable.superman);
+                    pic2.setImageResource(R.drawable.batman);
+                }
+                pic3.setImageResource(R.drawable.wonderselected);
+                selected.clear();
+                selected.add("wonder");
             }
         });
         changepic.setOnClickListener(new View.OnClickListener(){
