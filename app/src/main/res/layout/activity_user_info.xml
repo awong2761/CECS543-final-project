@@ -26,10 +26,9 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.022" />
+            app:layout_constraintVertical_bias="0.004" />
 
         <TextView
             android:id="@+id/height_txt"
@@ -43,7 +42,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.209" />
+            app:layout_constraintVertical_bias="0.194" />
 
         <EditText
             android:id="@+id/feet"
@@ -71,7 +70,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/feet"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.312" />
+            app:layout_constraintVertical_bias="0.289" />
 
         <com.google.android.material.slider.Slider
             android:id="@+id/current_weight_slider"
@@ -81,10 +80,9 @@
             android:valueTo="500.0"
             app:layout_constraintBottom_toTopOf="@+id/g_weight_txt"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/c_weight_txt"
-            app:layout_constraintVertical_bias="0.472"
+            app:layout_constraintVertical_bias="0.512"
             app:thumbColor="@color/white"
             app:trackColor="@color/white" />
 
@@ -126,7 +124,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/inches"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.312" />
+            app:layout_constraintVertical_bias="0.285" />
 
         <TextView
             android:id="@+id/c_weight_txt"
@@ -140,7 +138,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/height_txt"
-            app:layout_constraintVertical_bias="0.169" />
+            app:layout_constraintVertical_bias="0.147" />
 
         <TextView
             android:id="@+id/g_weight_txt"
@@ -152,10 +150,9 @@
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.531"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.521" />
+            app:layout_constraintVertical_bias="0.502" />
 
         <TextView
             android:id="@+id/activity_level_txt"
@@ -169,7 +166,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.678" />
+            app:layout_constraintVertical_bias="0.653" />
 
         <Spinner
             android:id="@+id/act_level"
@@ -179,10 +176,9 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.812"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/activity_level_txt"
-            app:layout_constraintVertical_bias="0.202" />
+            app:layout_constraintVertical_bias="0.151" />
 
         <Button
             android:id="@+id/finish_user"
@@ -209,5 +205,34 @@
             app:layout_constraintTop_toBottomOf="@+id/gender_txt"
             app:layout_constraintVertical_bias="0.4"
             tools:layout_editor_absoluteX="16dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/age_ask"
+            android:layout_width="94dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="92dp"
+            android:gravity="center"
+            android:text="Age:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/finish_user"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/act_level"
+            app:layout_constraintVertical_bias="0.477" />
+
+        <EditText
+            android:id="@+id/age_input"
+            android:layout_width="97dp"
+            android:layout_height="36dp"
+            android:background="@drawable/buttonstyle2"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/finish_user"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/age_ask"
+            app:layout_constraintTop_toBottomOf="@+id/act_level"
+            app:layout_constraintVertical_bias="0.476" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
