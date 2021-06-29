@@ -36,6 +36,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
     private EditText inches;
     private Slider currentweight;
     private Slider goalweight;
+    private EditText age;
 
     String feetNum;
     String inchNum;
@@ -43,7 +44,8 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
     String gWeight;
     String aLevel;
     String gender;
-    int caloriesLeft;
+    String userAge;
+    String caloriesLeft;
 
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
@@ -58,6 +60,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
         inches = findViewById(R.id.inches);
         currentweight = findViewById(R.id.current_weight_slider);
         goalweight = findViewById(R.id.goal_weight_slider);
+        age = findViewById(R.id.age_input);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
 
@@ -92,6 +95,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                 gWeight = String.valueOf(goalweight.getValue());
                 aLevel = actspin.getSelectedItem().toString();
                 gender = genderspin.getSelectedItem().toString();
+                userAge = age.getText().toString();
 
 
 
@@ -120,7 +124,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
     private void sendUserData() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
-        UserProfile userProfile = new UserProfile(feetNum, inchNum, curWeight, gWeight ,aLevel, gender, caloriesLeft);
+        UserProfile userProfile = new UserProfile(feetNum, inchNum, curWeight, gWeight ,aLevel, gender, caloriesLeft, userAge);
         myRef.setValue(userProfile);
     }
 

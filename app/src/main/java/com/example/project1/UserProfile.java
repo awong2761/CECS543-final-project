@@ -9,13 +9,14 @@ public class UserProfile {
     public String aLevel;
     public String gender;
     public int profile;
-    public int caloriesLeft;
+    public String caloriesLeft;
+    public String age;
 
     public UserProfile() {
 
     }
 
-    public UserProfile(String feetNum, String inchNum, String curWeight, String gWeight, String aLevel, String gender, int caloriesLeft){
+    public UserProfile(String feetNum, String inchNum, String curWeight, String gWeight, String aLevel, String gender, String caloriesLeft, String age){
         this.feetNum = feetNum;
         this.inchNum = inchNum;
         this.curWeight = curWeight;
@@ -23,10 +24,15 @@ public class UserProfile {
         this.gender = gender;
         this.goalWeight = gWeight;
         this.caloriesLeft = caloriesLeft;
+        this.age = age;
     }
-    public int getCaloriesLeft(){ return caloriesLeft;}
+    public String  getAge(){ return age; }
 
-    public void setCaloriesLeft(){ this.caloriesLeft = caloriesLeft; }
+    public void setAge(String age) { this.age = age;}
+
+    public String getCaloriesLeft(){ return caloriesLeft;}
+
+    public void setCaloriesLeft(String caloriesLeft){ this.caloriesLeft = caloriesLeft; }
 
     public String getFeetNum() {
         return feetNum;
