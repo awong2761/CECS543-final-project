@@ -29,7 +29,6 @@ public class Food extends AppCompatActivity {
     private String user;
     private ProgressDialog pDialog;
     private SearchView sv;
-    private MenuItem searchBar;
 
     private static final String appKey = "7f277e1bb0cb1d3b0b756e3cf375365c";
     private static final String appId = "7da7c17c";
@@ -184,6 +183,12 @@ public class Food extends AppCompatActivity {
             holder.brandView.setText("Brand: " + brandNames.get(position));
             holder.calorieView.setText("Calories: " + nf_calories.get(position));
 
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent navigation = new Intent(getApplicationContext(), Navigation.class);
+                }
+            });
 
         }
 
