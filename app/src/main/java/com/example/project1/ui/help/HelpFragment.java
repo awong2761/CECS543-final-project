@@ -174,10 +174,11 @@ public class HelpFragment extends Fragment {
             @Override
             public void onClick(View view){
                 switch(imgSelected){
-                    case "super": Navigation.profilepic.setImageResource(R.drawable.pic1); break;
-                    case "bat": Navigation.profilepic.setImageResource(R.drawable.pic2); break;
-                    case "wonder": Navigation.profilepic.setImageResource(R.drawable.pic3); break;
+                    case "super": Navigation.profilepic.setImageResource(R.drawable.superman); break;
+                    case "bat": Navigation.profilepic.setImageResource(R.drawable.batman); break;
+                    case "wonder": Navigation.profilepic.setImageResource(R.drawable.wonder); break;
                 }
+                diag2.dismiss();
             }
         });
     }
