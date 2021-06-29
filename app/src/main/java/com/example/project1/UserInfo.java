@@ -43,6 +43,8 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
     String gWeight;
     String aLevel;
     String gender;
+    double height;
+    double kgWeight;
     int caloriesLeft;
 
     FirebaseDatabase firebaseDatabase;
@@ -93,6 +95,23 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                 aLevel = actspin.getSelectedItem().toString();
                 gender = genderspin.getSelectedItem().toString();
 
+                height = (Integer.parseInt(feetNum)*30.48) + (Integer.parseInt(inchNum)*2.54);
+                kgWeight = (Integer.parseInt(curWeight)*0.453592);
+
+
+
+                if(gender == "Male") {
+                    caloriesLeft = (int)(13.397*(Integer.parseInt(gWeight)) + (4.799));
+                    if(aLevel == "Low") {
+                        caloriesLeft += 100;
+                    }
+                    if(aLevel == "Moderate") {
+                        caloriesLeft += 200;
+                    }
+                    if(aLevel == "High") {
+                        caloriesLeft += 300;
+                    }
+                }
 
 
                 if(TextUtils.isEmpty(feetNum) || TextUtils.isEmpty(inchNum) ||

@@ -13,10 +13,22 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.project1.R;
+import com.example.project1.UserInfo;
+import com.example.project1.UserProfile;
 import com.example.project1.databinding.FragmentHomeBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 public class HomeFragment extends Fragment {
     private TextView calorieDisplay;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase userData;
 
 
     private FragmentHomeBinding binding;
@@ -29,6 +41,24 @@ public class HomeFragment extends Fragment {
 
         calorieDisplay = root.findViewById(R.id.calorie_display);
         String totalCalories;
+        firebaseAuth = FirebaseAuth.getInstance();
+        userData = FirebaseDatabase.getInstance();
+
+        DatabaseReference databaseReference = userData.getReference(firebaseAuth.getUid());
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                UserProfile userProfile = snapshot.getValue(UserProfile.class);
+                calorieDisplay.setText("Calories: " + userProfile.getCaloriesLeft());
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
 
         return root;
     }
