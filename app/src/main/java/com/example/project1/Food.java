@@ -47,6 +47,7 @@ public class Food extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
+        query = "";
 
         foodItems = new ArrayList<>();
         brandNames = new ArrayList<>();
