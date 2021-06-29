@@ -43,6 +43,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
     String gWeight;
     String aLevel;
     String gender;
+    int caloriesLeft;
 
     FirebaseDatabase firebaseDatabase;
     FirebaseAuth firebaseAuth;
@@ -119,7 +120,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
     private void sendUserData() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
-        UserProfile userProfile = new UserProfile(feetNum, inchNum, curWeight, gWeight ,aLevel, gender);
+        UserProfile userProfile = new UserProfile(feetNum, inchNum, curWeight, gWeight ,aLevel, gender, caloriesLeft);
         myRef.setValue(userProfile);
     }
 
