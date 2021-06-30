@@ -216,16 +216,16 @@ public class FoodFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Intent navigation = new Intent(getActivity().getApplicationContext(), Navigation.class);
-
                     firebaseAuth = FirebaseAuth.getInstance();
                     FirebaseUser user = firebaseAuth.getCurrentUser();
-
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                     databaseReference.child(user.getUid()).child("currentFoodName").setValue(foodItems.get(position));
                     databaseReference.child(user.getUid()).child("currentBrandName").setValue(brandNames.get(position));
                     databaseReference.child(user.getUid()).child("currentFoodCalories").setValue(nf_calories.get(position));
-
-
+                    startActivity(navigation);
+//                    Intent intent = new Intent(getActivity().getApplicationContext(), HomeFragment.class);
+//                    intent.putExtra("FROM_ACTIVITY", "TEST");
+//                    startActivity(intent);
                 }
             });
 
