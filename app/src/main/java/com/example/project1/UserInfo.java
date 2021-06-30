@@ -129,9 +129,9 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                 gender = genderspin.getSelectedItem().toString();
                 userAge = age.getText().toString();
                 profilePic = "android.resource://com.example.project1/2131165272";
-                foodName = "placeholder";
-                foodBrand = "placeholder";
-                calories = "placeholder";
+                foodName = "0";
+                foodBrand = "0";
+                calories = "0";
 
                 height = (Integer.parseInt(feetNum)*30.48) + (Integer.parseInt(inchNum)*2.54);
                 kgWeight = (Double.parseDouble(curWeight)*0.453592);
