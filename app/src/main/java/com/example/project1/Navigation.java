@@ -2,16 +2,20 @@ package com.example.project1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.project1.ui.help.HelpFragment;
 import com.google.android.material.navigation.NavigationView;
 
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -20,7 +24,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1.databinding.ActivityNavigationBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+
+import org.jetbrains.annotations.NotNull;
 
 import static androidx.navigation.Navigation.findNavController;
 
@@ -32,8 +45,11 @@ public class Navigation extends AppCompatActivity {
     private TextView drawerUsername;
     private NavigationView navigationView;
     private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase userData;
     private String user;
     public static ImageView profilepic;
+    private Uri profilepicset;
+    UserProfileChangeRequest profileUpdates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +85,25 @@ public class Navigation extends AppCompatActivity {
         user = getIntent().getStringExtra("displayName");
         drawerUsername.setText("Welcome " + user);
         profilepic = headerView.findViewById(R.id.navProfilePic);
+
+
+        userData = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = userData.getReference(firebaseAuth.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                UserProfile userProfile = snapshot.getValue(UserProfile.class);
+                profilepic.setImageURI(Uri.parse(userProfile.getProfilePic()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+            }
+        });
+
+
+
+
 
 //        String setImagePic = getIntent().getStringExtra("image");
 //        if(setImagePic != null){

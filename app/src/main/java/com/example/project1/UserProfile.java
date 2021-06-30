@@ -8,15 +8,15 @@ public class UserProfile {
     public String goalWeight;
     public String aLevel;
     public String gender;
-    public int profile;
     public String caloriesLeft;
     public String age;
+    public String profilePic;
 
     public UserProfile() {
 
     }
 
-    public UserProfile(String feetNum, String inchNum, String curWeight, String gWeight, String aLevel, String gender, String caloriesLeft, String age){
+    public UserProfile(String feetNum, String inchNum, String curWeight, String gWeight, String aLevel, String gender, String caloriesLeft, String age, String profilePic){
         this.feetNum = feetNum;
         this.inchNum = inchNum;
         this.curWeight = curWeight;
@@ -25,7 +25,12 @@ public class UserProfile {
         this.goalWeight = gWeight;
         this.caloriesLeft = caloriesLeft;
         this.age = age;
+        this.profilePic = profilePic;
     }
+    public String getProfilePic(){ return profilePic; }
+
+    public void setProfilePic(String profilePic) { this.profilePic = profilePic; }
+
     public String  getAge(){ return age; }
 
     public void setAge(String age) { this.age = age;}

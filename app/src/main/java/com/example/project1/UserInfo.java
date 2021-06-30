@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.project1.ui.help.HelpFragment;
 import com.google.android.material.slider.Slider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,6 +39,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
     private Slider goalweight;
     private EditText age;
 
+    String profilePic = "nice";
     String feetNum;
     String inchNum;
     String curWeight;
@@ -99,6 +101,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                 aLevel = actspin.getSelectedItem().toString();
                 gender = genderspin.getSelectedItem().toString();
                 userAge = age.getText().toString();
+                profilePic = "android.resource://com.example.project1/2131165272";
 
                 height = (Integer.parseInt(feetNum)*30.48) + (Integer.parseInt(inchNum)*2.54);
                 kgWeight = (Double.parseDouble(curWeight)*0.453592);
@@ -155,7 +158,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
     private void sendUserData() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
-        UserProfile userProfile = new UserProfile(feetNum, inchNum, curWeight, gWeight ,aLevel, gender, caloriesLeft, userAge);
+        UserProfile userProfile = new UserProfile(feetNum, inchNum, curWeight, gWeight ,aLevel, gender, caloriesLeft, userAge, profilePic);
         myRef.setValue(userProfile);
     }
 
