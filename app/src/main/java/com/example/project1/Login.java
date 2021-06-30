@@ -61,14 +61,14 @@ public class Login extends AppCompatActivity {
         loginlogotext = findViewById(R.id.loginlogotext);
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        if(user != null) {
-            Intent login = new Intent(context, Navigation.class);
-            user = firebaseAuth.getInstance().getCurrentUser();
-            String displayName = user.getDisplayName();
-            login.putExtra("displayName", displayName);
-            finish();
-            startActivity(login);
-        }
+//        if(user != null) {
+//            Intent login = new Intent(context, Navigation.class);
+//            user = firebaseAuth.getInstance().getCurrentUser();
+//            String displayName = user.getDisplayName();
+//            login.putExtra("displayName", displayName);
+//            finish();
+//            startActivity(login);
+//        }
 
         loginlogotext = findViewById(R.id.loginlogotext);
         TextPaint paint = loginlogotext.getPaint();
