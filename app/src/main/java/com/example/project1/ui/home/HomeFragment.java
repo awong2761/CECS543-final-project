@@ -49,8 +49,6 @@ public class HomeFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         userData = FirebaseDatabase.getInstance();
 
-        Bundle bundle = this.getArguments();
-
 
 
         TextPaint paint = calorieDisplay.getPaint();

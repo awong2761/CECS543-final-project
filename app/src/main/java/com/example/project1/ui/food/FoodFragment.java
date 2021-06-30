@@ -60,9 +60,6 @@ public class FoodFragment extends Fragment {
 
     private ProgressDialog pDialog;
 
-    public static FoodFragment newInstance() {
-        return new FoodFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -167,18 +164,6 @@ public class FoodFragment extends Fragment {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case android.R.id.home:
-                Intent home = new Intent(getActivity().getApplicationContext(), Navigation.class);
-                home.putExtra("displayName", user);
-                startActivity(home);
-                break;
-        }
-        return true;
-    }
-
     //Recyclerview adapter class
     public class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter <SimpleItemRecyclerViewAdapter.ViewHolder> {
         private ArrayList<String> foodItems;
@@ -209,7 +194,7 @@ public class FoodFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Intent navigation = new Intent(getActivity().getApplicationContext(), Navigation.class);
-
+                
 
                 }
             });
