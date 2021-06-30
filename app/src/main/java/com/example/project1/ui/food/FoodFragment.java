@@ -31,6 +31,10 @@ import com.example.project1.Navigation;
 import com.example.project1.R;
 import com.example.project1.databinding.FoodFragmentBinding;
 import com.example.project1.ui.home.HomeFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,6 +49,7 @@ public class FoodFragment extends Fragment {
     private FoodFragmentBinding binding;
 
     private View root;
+    private FirebaseAuth firebaseAuth;
 
     private static final String appKey = "7f277e1bb0cb1d3b0b756e3cf375365c";
     private static final String appId = "7da7c17c";
@@ -119,6 +124,8 @@ public class FoodFragment extends Fragment {
                         foodItems.add(itemName);
                         brandNames.add(brandName);
                         nf_calories.add(calories);
+
+
 
                     }
                 } catch (JSONException e) {
@@ -209,6 +216,14 @@ public class FoodFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Intent navigation = new Intent(getActivity().getApplicationContext(), Navigation.class);
+
+                    firebaseAuth = FirebaseAuth.getInstance();
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                    databaseReference.child(user.getUid()).child("currentFoodName").setValue(foodItems.get(position));
+                    databaseReference.child(user.getUid()).child("currentBrandName").setValue(brandNames.get(position));
+                    databaseReference.child(user.getUid()).child("currentFoodCalories").setValue(nf_calories.get(position));
 
 
                 }

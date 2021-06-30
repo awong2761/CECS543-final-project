@@ -11,12 +11,16 @@ public class UserProfile {
     public String caloriesLeft;
     public String age;
     public String profilePic;
+    public String currentFoodName;
+    public String currentFoodCalories;
+    public String currentBrandName;
 
     public UserProfile() {
 
     }
 
-    public UserProfile(String feetNum, String inchNum, String curWeight, String gWeight, String aLevel, String gender, String caloriesLeft, String age, String profilePic){
+    public UserProfile(String feetNum, String inchNum, String curWeight, String gWeight, String aLevel, String gender, String caloriesLeft, String age, String profilePic,
+                       String currentFoodName, String currentFoodCalories, String currentBrandName){
         this.feetNum = feetNum;
         this.inchNum = inchNum;
         this.curWeight = curWeight;
@@ -26,7 +30,22 @@ public class UserProfile {
         this.caloriesLeft = caloriesLeft;
         this.age = age;
         this.profilePic = profilePic;
+        this.currentFoodName = currentFoodName;
+        this.currentFoodCalories = currentFoodCalories;
+        this. currentBrandName = currentBrandName;
     }
+    public String getCurrentFoodName(){ return currentFoodName; }
+
+    public void setCurrentFoodName(String currentFoodName) { this.currentFoodName = currentFoodName; }
+
+    public String getCurrentFoodCalories(){ return currentFoodCalories; }
+
+    public void setCurrentFoodCalories(String currentFoodCalories) { this.currentFoodCalories = currentFoodCalories; }
+
+    public String getCurrentBrandName(){ return currentBrandName; }
+
+    public void setCurrentBrandName(String currentBrandName) { this.currentBrandName = currentBrandName; }
+
     public String getProfilePic(){ return profilePic; }
 
     public void setProfilePic(String profilePic) { this.profilePic = profilePic; }
