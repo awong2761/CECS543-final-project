@@ -65,6 +65,9 @@ public class HomeFragment extends Fragment {
         userData = FirebaseDatabase.getInstance();
 
 
+
+
+
         DatabaseReference databaseReference = userData.getReference(firebaseAuth.getUid());
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -73,6 +76,31 @@ public class HomeFragment extends Fragment {
                 calorieDisplay.setText(userProfile.getCaloriesLeft());
                 caloriesSub = userProfile.getCurrentFoodCalories();
                 firebaseAuth = FirebaseAuth.getInstance();
+                if(Integer.parseInt(userProfile.getCaloriesLeft()) < 0) {
+                    TextPaint paint = calorieDisplay.getPaint();
+                    float width = paint.measureText(calorieDisplay.getText().toString());
+                    Shader textShader = new LinearGradient(0, 0, width, calorieDisplay.getTextSize(),
+                            new int[]{
+                                    Color.parseColor("#FF0000"),
+                                    Color.parseColor("#FFD79C"),
+                            }, null, Shader.TileMode.CLAMP);
+                    calorieDisplay.getPaint().setShader(textShader);
+                    calorieDisplay.setTextColor(Color.parseColor("#FF0000"));
+                    caloriesLeftMessage.setText("calories over today");
+                }
+                else{
+                    TextPaint paint = calorieDisplay.getPaint();
+                    float width = paint.measureText(calorieDisplay.getText().toString());
+                    Shader textShader = new LinearGradient(0, 0, width, calorieDisplay.getTextSize(),
+                            new int[]{
+                                    Color.parseColor("#3DBDB0"),
+                                    Color.parseColor("#04B5CE"),
+                            }, null, Shader.TileMode.CLAMP);
+                    calorieDisplay.getPaint().setShader(textShader);
+                    calorieDisplay.setTextColor(Color.parseColor("#3DBDB0"));
+                    caloriesLeftMessage.setText("calories left today");
+                }
+
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                 if(!userProfile.getCurrentFoodCalories().equals("0")){

@@ -56,7 +56,7 @@ public class FoodFragment extends Fragment {
     private String baseURL = "https://api.nutritionix.com/v1_1/search/";
     private String baseURL2 = "?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=" +
             appId + "&appKey=" + appKey;
-    private String query;
+    private String query = "";
 
     ArrayList<String> foodItems;
     ArrayList<String> brandNames;
