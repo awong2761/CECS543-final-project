@@ -2,6 +2,7 @@ package com.example.project1.ui.help;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +19,26 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.project1.Navigation;
+import com.example.project1.Profile;
 import com.example.project1.R;
+import com.example.project1.UserInfo;
+import com.example.project1.UserProfile;
 import com.example.project1.databinding.FragmentHelpBinding;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -31,6 +46,7 @@ import java.util.ArrayList;
 
 public class HelpFragment extends Fragment {
 
+    private static final int RESULT_OK = 0 ;
     private HelpViewModel helpViewModel;
     private FragmentHelpBinding binding;
     String imgSelected = "hold";
@@ -38,6 +54,7 @@ public class HelpFragment extends Fragment {
     // Popup
     private Dialog diag1;
     private Dialog diag2;
+
 
     private Button popchangepic;
     private Button popchangepass;
@@ -52,14 +69,18 @@ public class HelpFragment extends Fragment {
     private Button changepic;
     private TextView closepop2;
 
+    private FirebaseDatabase userData;
     private Context context1;
     private Context context2;
     private FirebaseUser user;
     Context context;
+    UserProfileChangeRequest profileUpdates;
+
+    private Uri test;
 
     private ArrayList<String> selected;
 
-
+    private FirebaseAuth firebaseAuth;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -67,7 +88,11 @@ public class HelpFragment extends Fragment {
         diag2 = new Dialog(context2);
         user = FirebaseAuth.getInstance().getCurrentUser();
         context = getActivity().getApplicationContext();
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
         selected = new ArrayList<String>();
+        profileUpdates = new UserProfileChangeRequest.Builder().setPhotoUri(null).build();
 
     }
     @Override
@@ -195,17 +220,21 @@ public class HelpFragment extends Fragment {
         changepic.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                 switch(imgSelected){
-                    case "super": Navigation.profilepic.setImageResource(R.drawable.superman); break;
-                    case "bat": Navigation.profilepic.setImageResource(R.drawable.batman); break;
-                    case "wonder": Navigation.profilepic.setImageResource(R.drawable.wonder); break;
+                    case "super":
+                        test = Uri.parse("android.resource://com.example.project1/" + R.drawable.superman);
+                        break;
+                    case "bat":
+                        test = Uri.parse("android.resource://com.example.project1/" + R.drawable.batman);
+                        break;
+                    case "wonder":
+                        test = Uri.parse("android.resource://com.example.project1/" + R.drawable.wonder);
+                        break;
                 }
-                diag2.dismiss();
+                databaseReference.child(user.getUid()).child("profilePic").setValue(test.toString());
             }
         });
     }
-
-    public void clickNew(View v){
-    }
-
 }
