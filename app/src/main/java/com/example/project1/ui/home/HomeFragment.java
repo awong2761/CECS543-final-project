@@ -37,6 +37,7 @@ import java.util.Observable;
 
 public class HomeFragment extends Fragment {
     public static TextView calorieDisplay;
+    public static TextView caloriesLeftMessage;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase userData;
     private String caloriesSub = "";
@@ -57,7 +58,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
+        caloriesLeftMessage= root.findViewById(R.id.caloriesLeft_msg);
         calorieDisplay = root.findViewById(R.id.calorie_display);
         String totalCalories;
         firebaseAuth = FirebaseAuth.getInstance();
@@ -84,7 +85,6 @@ public class HomeFragment extends Fragment {
                     databaseReference.child(user.getUid()).child("currentFoodCalories").setValue("0");
                 }
             }
-
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 

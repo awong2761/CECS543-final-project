@@ -112,6 +112,7 @@ public class Navigation extends AppCompatActivity {
                             }, null, Shader.TileMode.CLAMP);
                     HomeFragment.calorieDisplay.getPaint().setShader(textShader);
                     HomeFragment.calorieDisplay.setTextColor(Color.parseColor("#FF0000"));
+                    HomeFragment.caloriesLeftMessage.setText("calories over today");
                 }
                 else{
                     TextPaint paint = HomeFragment.calorieDisplay.getPaint();
@@ -123,6 +124,8 @@ public class Navigation extends AppCompatActivity {
                             }, null, Shader.TileMode.CLAMP);
                     HomeFragment.calorieDisplay.getPaint().setShader(textShader);
                     HomeFragment.calorieDisplay.setTextColor(Color.parseColor("#3DBDB0"));
+                    HomeFragment.caloriesLeftMessage.setText("calories left today");
+
                 }
             }
 
