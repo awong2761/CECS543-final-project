@@ -11,6 +11,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +30,7 @@ import com.example.project1.HttpHandler;
 import com.example.project1.Navigation;
 import com.example.project1.R;
 import com.example.project1.databinding.FoodFragmentBinding;
+import com.example.project1.ui.home.HomeFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,6 +56,7 @@ public class FoodFragment extends Fragment {
     ArrayList<String> foodItems;
     ArrayList<String> brandNames;
     ArrayList<String> nf_calories;
+
 
     private ProgressDialog pDialog;
 
@@ -126,8 +131,7 @@ public class FoodFragment extends Fragment {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             if(pDialog.isShowing()) {
-                Toast.makeText(getActivity().getApplicationContext(), "working", Toast.LENGTH_SHORT).show();
-                pDialog.cancel();
+                pDialog.dismiss();
             }
 
             RecyclerView rv = root.findViewById(R.id.food_list);
@@ -205,6 +209,8 @@ public class FoodFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Intent navigation = new Intent(getActivity().getApplicationContext(), Navigation.class);
+
+
                 }
             });
 

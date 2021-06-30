@@ -43,10 +43,15 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
         calorieDisplay = root.findViewById(R.id.calorie_display);
         String totalCalories;
         firebaseAuth = FirebaseAuth.getInstance();
         userData = FirebaseDatabase.getInstance();
+
+        Bundle bundle = this.getArguments();
+
+
 
         TextPaint paint = calorieDisplay.getPaint();
         float width = paint.measureText(calorieDisplay.getText().toString());
