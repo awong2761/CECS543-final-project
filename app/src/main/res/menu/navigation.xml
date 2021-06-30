@@ -6,11 +6,4 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/ic_search"
-        app:showAsAction="ifRoom|collapseActionView"
-        android:title="@string/action_search"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 </menu>

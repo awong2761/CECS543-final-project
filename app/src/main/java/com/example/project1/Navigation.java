@@ -62,7 +62,7 @@ public class Navigation extends AppCompatActivity {
         logoutClick();
 
         // call if food is clicked
-        foodClick();
+//        foodClick();
 
         View headerView = navigationView.getHeaderView(0);
         drawerUsername = headerView.findViewById(R.id.drawer_username);
@@ -90,15 +90,15 @@ public class Navigation extends AppCompatActivity {
         startActivity(profile);
     }
 
-    public void foodClick() {
-        navigationView.getMenu().findItem(R.id.nav_food).setOnMenuItemClickListener(menuItem -> {
-           Intent food = new Intent(getApplicationContext(), Food.class);
-           food.putExtra("displayName", user);
-           finish();
-           startActivity(food);
-           return true;
-        });
-    }
+//    public void foodClick() {
+//        navigationView.getMenu().findItem(R.id.nav_food).setOnMenuItemClickListener(menuItem -> {
+//           Intent food = new Intent(getApplicationContext(), Food.class);
+//           food.putExtra("displayName", user);
+//           finish();
+//           startActivity(food);
+//           return true;
+//        });
+//    }
 
     public void logoutClick() {
         navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(menuItem -> {
@@ -114,7 +114,7 @@ public class Navigation extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.navigation, menu);
-        menu.findItem(R.id.action_search).setVisible(false);
+
         return true;
     }
 
