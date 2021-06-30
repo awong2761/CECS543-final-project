@@ -65,7 +65,6 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 UserProfile userProfile = snapshot.getValue(UserProfile.class);
                 calorieDisplay.setText(userProfile.getCaloriesLeft());
-
             }
 
             @Override

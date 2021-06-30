@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.project1.ui.help.HelpFragment;
@@ -87,9 +90,30 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
         levels.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderspin.setAdapter(genders);
 
+        actspin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                ((TextView) view).setTextColor(Color.WHITE);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent){
+            }
+        });
+
+        genderspin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                ((TextView) view).setTextColor(Color.WHITE);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent){
+            }
+        });
+
         context = getApplicationContext();
 
         finished = findViewById(R.id.finish_user);
+
 
         finished.setOnClickListener(new View.OnClickListener(){
             @Override
