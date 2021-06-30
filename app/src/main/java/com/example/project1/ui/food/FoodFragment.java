@@ -174,18 +174,6 @@ public class FoodFragment extends Fragment {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case android.R.id.home:
-                Intent home = new Intent(getActivity().getApplicationContext(), Navigation.class);
-                home.putExtra("displayName", user);
-                startActivity(home);
-                break;
-        }
-        return true;
-    }
-
     //Recyclerview adapter class
     public class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter <SimpleItemRecyclerViewAdapter.ViewHolder> {
         private ArrayList<String> foodItems;
