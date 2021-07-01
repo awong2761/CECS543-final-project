@@ -118,6 +118,10 @@ public class HomeFragment extends Fragment {
 
                     databaseReference.child(user.getUid()).child("caloriesLeft").setValue(String.valueOf(totalCals));
                     databaseReference.child(user.getUid()).child("currentFoodCalories").setValue("0");
+                } else if(foodName != null){
+                    foodName.setText(FoodFragment.foodName);
+                    brandName.setText("Brand: " + FoodFragment.brandName);
+                    calories.setText("Calories: " + FoodFragment.calories);
                 }
                 if(FoodFragment.calories != null) {
                     undo = root.findViewById(R.id.undo_btn);

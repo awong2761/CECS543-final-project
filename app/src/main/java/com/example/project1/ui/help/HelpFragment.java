@@ -91,6 +91,10 @@ public class HelpFragment extends Fragment {
         selected = new ArrayList<String>();
         profileUpdates = new UserProfileChangeRequest.Builder().setPhotoUri(null).build();
 
+        Navigation.navigationView.getMenu().findItem(R.id.nav_food).setEnabled(true);
+        Navigation.navigationView.getMenu().findItem(R.id.nav_home).setEnabled(true);
+        Navigation.navigationView.getMenu().findItem(R.id.nav_help).setEnabled(false);
+
     }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
