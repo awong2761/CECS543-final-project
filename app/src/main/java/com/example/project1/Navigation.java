@@ -49,7 +49,7 @@ public class Navigation extends AppCompatActivity {
     private ActivityNavigationBinding binding;
     private DrawerLayout drawer;
     private TextView drawerUsername;
-    private NavigationView navigationView;
+    public static NavigationView navigationView;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase userData;
     private String user;
@@ -80,6 +80,9 @@ public class Navigation extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        navigationView.getMenu().findItem(R.id.nav_home).setEnabled(false);
+        navigationView.getMenu().findItem(R.id.nav_food).setEnabled(true);
+        navigationView.getMenu().findItem(R.id.nav_help).setEnabled(true);
         // call if logout is clicked
         logoutClick();
 
@@ -153,8 +156,7 @@ public class Navigation extends AppCompatActivity {
 
     public void onClick(View v) {
         Intent profile = new Intent(getApplicationContext(), Profile.class);
-        profile.putExtra("displayName", user);
-        finish();
+        //profile.putExtra("displayName", user);
         startActivity(profile);
     }
 

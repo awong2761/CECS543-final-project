@@ -31,6 +31,7 @@ import com.example.project1.Navigation;
 import com.example.project1.R;
 import com.example.project1.databinding.FoodFragmentBinding;
 import com.example.project1.ui.home.HomeFragment;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -47,6 +48,8 @@ public class FoodFragment extends Fragment {
     private String user;
     private SearchView sv;
     private FoodFragmentBinding binding;
+
+    private NavigationView navigationView;
 
     private View root;
     private FirebaseAuth firebaseAuth;
@@ -73,6 +76,8 @@ public class FoodFragment extends Fragment {
         return new FoodFragment();
     }
 
+
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -85,6 +90,10 @@ public class FoodFragment extends Fragment {
         setHasOptionsMenu(true);
         pDialog = new ProgressDialog(getActivity().getApplicationContext());
 
+        Navigation.navigationView.getMenu().findItem(R.id.nav_home).setEnabled(true);
+        Navigation.navigationView.getMenu().findItem(R.id.nav_food).setEnabled(false);
+        Navigation.navigationView.getMenu().findItem(R.id.nav_help).setEnabled(true);
+
 
 //        getActivity().setSupportActionBar(toolbar);
 //        getActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -92,8 +101,6 @@ public class FoodFragment extends Fragment {
 
         new GetFood().execute();
         return root;
-
-
 
     }
 
@@ -217,6 +224,7 @@ public class FoodFragment extends Fragment {
                     foodName = foodItems.get(position);
                     brandName = brandNames.get(position);
                     calories = nf_calories.get(position);
+                    navigation.putExtra("displayName", user.getDisplayName());
                     startActivity(navigation);
 //                    Intent intent = new Intent(getActivity().getApplicationContext(), HomeFragment.class);
 //                    intent.putExtra("FROM_ACTIVITY", "TEST");

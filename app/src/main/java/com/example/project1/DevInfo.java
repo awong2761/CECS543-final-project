@@ -11,7 +11,6 @@ import android.view.View;
 public class DevInfo extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +19,6 @@ public class DevInfo extends AppCompatActivity {
         toolbar = findViewById(R.id.dev_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        username = getIntent().getStringExtra("username");
 
     }
 

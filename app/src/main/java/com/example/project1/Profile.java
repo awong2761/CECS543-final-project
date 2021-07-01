@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +31,7 @@ public class Profile extends AppCompatActivity {
     private FirebaseDatabase userData;
     private Toolbar toolbar;
     private String user;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,10 @@ public class Profile extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         userData = FirebaseDatabase.getInstance();
+
+        Navigation.navigationView.getMenu().findItem(R.id.nav_home).setEnabled(true);
+        Navigation.navigationView.getMenu().findItem(R.id.nav_food).setEnabled(false);
+        Navigation.navigationView.getMenu().findItem(R.id.nav_help).setEnabled(true);
 
         DatabaseReference databaseReference = userData.getReference(firebaseAuth.getUid());
 
@@ -76,10 +82,7 @@ public class Profile extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case android.R.id.home:
-                Intent home = new Intent(getApplicationContext(), Navigation.class);
-                home.putExtra("displayName", user);
-                finish();
-                startActivity(home);
+                this.finish();
         }
         return true;
     }

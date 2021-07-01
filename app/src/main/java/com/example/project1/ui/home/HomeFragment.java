@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.project1.Navigation;
 import com.example.project1.R;
 import com.example.project1.UserInfo;
 import com.example.project1.UserProfile;
@@ -73,9 +74,6 @@ public class HomeFragment extends Fragment {
 
 
 
-
-
-
         DatabaseReference databaseReference = userData.getReference(firebaseAuth.getUid());
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -85,6 +83,7 @@ public class HomeFragment extends Fragment {
                 caloriesSub = userProfile.getCurrentFoodCalories();
                 firebaseAuth = FirebaseAuth.getInstance();
                 if(Integer.parseInt(userProfile.getCaloriesLeft()) < 0) {
+                    calorieDisplay.setText(String.valueOf(Math.abs(Integer.parseInt(userProfile.getCaloriesLeft()))));
                     TextPaint paint = calorieDisplay.getPaint();
                     float width = paint.measureText(calorieDisplay.getText().toString());
                     Shader textShader = new LinearGradient(0, 0, width, calorieDisplay.getTextSize(),
