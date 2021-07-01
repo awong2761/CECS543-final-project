@@ -36,6 +36,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Observable;
 
+import static java.lang.Math.abs;
+
 public class HomeFragment extends Fragment {
     public static TextView calorieDisplay;
     public static TextView caloriesLeftMessage;
@@ -93,6 +95,7 @@ public class HomeFragment extends Fragment {
                     calorieDisplay.getPaint().setShader(textShader);
                     calorieDisplay.setTextColor(Color.parseColor("#FF0000"));
                     caloriesLeftMessage.setText("calories over today");
+
                 }
                 else{
                     TextPaint paint = calorieDisplay.getPaint();

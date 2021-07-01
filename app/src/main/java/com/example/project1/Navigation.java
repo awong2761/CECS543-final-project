@@ -100,7 +100,7 @@ public class Navigation extends AppCompatActivity {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 UserProfile userProfile = snapshot.getValue(UserProfile.class);
                 profilepic.setImageURI(Uri.parse(userProfile.getProfilePic()));
-                HomeFragment.calorieDisplay.setText(userProfile.getCaloriesLeft());
+                HomeFragment.calorieDisplay.setText(String.valueOf(Math.abs(Integer.parseInt(userProfile.getCaloriesLeft()))));
 
                 if(Integer.parseInt(userProfile.getCaloriesLeft()) < 0) {
                     TextPaint paint = HomeFragment.calorieDisplay.getPaint();
