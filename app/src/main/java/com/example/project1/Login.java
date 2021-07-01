@@ -29,11 +29,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
 
-/**
- *  CECS453 Project #1
- *  Richard Nguyen, SID: 26698215
- *  Andy Wong     , SID: 26682641
- */
+// This class represents the login page, which takes user and password and validates user input
+// to log in.
 
 public class Login extends AppCompatActivity {
 
@@ -69,7 +66,10 @@ public class Login extends AppCompatActivity {
 //            finish();
 //            startActivity(login);
 //        }
+        // This keeps the user logged in, checks to see if user is set to null, if not it will
+        // begin login
 
+        // Logo Design
         loginlogotext = findViewById(R.id.loginlogotext);
         TextPaint paint = loginlogotext.getPaint();
         float width = paint.measureText(loginlogotext.getText().toString());
@@ -100,6 +100,8 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    // Validation method will validate the username and password with the firebase authentication
+    // database
     private void validate(String userName, String pass) {
 
         progressDialog.setMessage("Logging in");

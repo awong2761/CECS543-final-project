@@ -1,5 +1,6 @@
 package com.example.project1;
 
+// This class is used to keep a recording of all data and use it to send
 public class UserProfile {
 
     public String feetNum;
@@ -15,10 +16,7 @@ public class UserProfile {
     public String currentFoodCalories;
     public String currentBrandName;
 
-    public UserProfile() {
-
-    }
-
+    // Constructor method for all values of UserProfile
     public UserProfile(String feetNum, String inchNum, String curWeight, String gWeight, String aLevel, String gender, String caloriesLeft, String age, String profilePic,
                        String currentFoodName, String currentFoodCalories, String currentBrandName){
         this.feetNum = feetNum;
@@ -32,8 +30,11 @@ public class UserProfile {
         this.profilePic = profilePic;
         this.currentFoodName = currentFoodName;
         this.currentFoodCalories = currentFoodCalories;
-        this. currentBrandName = currentBrandName;
+        this.currentBrandName = currentBrandName;
     }
+    public UserProfile(){}
+
+    // Below is all of the get and set methods, created if needed
     public String getCurrentFoodName(){ return currentFoodName; }
 
     public void setCurrentFoodName(String currentFoodName) { this.currentFoodName = currentFoodName; }

@@ -30,6 +30,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+// This class represents the user info input page, it will take all the values of the user and input
+// the data into the real time firebase data
 public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     String[] gen = {"Male", "Female"};
@@ -78,7 +80,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
 
 
 
-        // Spinner
+        // Spinner creation for activity level and gender
         Spinner actspin = findViewById(R.id.act_level);
         actspin.setOnItemSelectedListener(this);
         ArrayAdapter<String> levels = new ArrayAdapter<>(this, android.R.layout.
@@ -93,6 +95,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
         levels.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderspin.setAdapter(genders);
 
+        // Spinner text settings for activity level and gender
         actspin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
@@ -113,11 +116,10 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
             }
         });
 
+
+        // When concluded, finish button will send all data into realtime database
         context = getApplicationContext();
-
         finished = findViewById(R.id.finish_user);
-
-
         finished.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -133,10 +135,9 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                 foodBrand = "0";
                 calories = "0";
 
+                // Setting the necessary values for the total calories the user needs left for the day
                 height = (Integer.parseInt(feetNum)*30.48) + (Integer.parseInt(inchNum)*2.54);
                 kgWeight = (Double.parseDouble(curWeight)*0.453592);
-
-
                 if(gender == "Male") {
                     caloriesLeftNum = (int)(10*(Double.parseDouble(gWeight)) + (6.25*height) - (5*(Integer.parseInt(userAge))) + 5);
                 }
@@ -163,6 +164,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
 
 
 
+                // Checks to see if the user correctly entered all the data, if so it will send to real time database
                 if(TextUtils.isEmpty(feetNum) || TextUtils.isEmpty(inchNum) ||
                         TextUtils.isEmpty(curWeight) || TextUtils.isEmpty(gWeight)){
                     Toast.makeText(context, "Please fill all fields."
@@ -170,7 +172,6 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                 }
                 else{
                     sendUserData();
-                    //addDatatoFirebase(feetNum, inchNum, curWeight, gWeight, aLevel, gender);
                     Intent done = new Intent(context, Navigation.class);
                     FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
                     String displayName = user.getDisplayName();
@@ -185,6 +186,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
         });
     }
 
+    // This method will send the data to the realtime firebase data based on User ID.
     private void sendUserData() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
@@ -192,8 +194,6 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                 gender, caloriesLeft, userAge, profilePic, foodName, calories, foodBrand);
         myRef.setValue(userProfile);
     }
-
-
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
