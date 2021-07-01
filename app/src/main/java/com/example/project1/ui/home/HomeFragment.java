@@ -9,6 +9,7 @@ import android.text.TextPaint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,13 +42,17 @@ public class HomeFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase userData;
     private String caloriesSub = "";
-    private String brand;
-    private String food;
     private int caloriesSubInt;
     private int totalCals;
     private int totalCalsFinal;
     public UserProfile userProfile;
     public static String caloriesSub1 = "";
+    private Button undo;
+    private TextView foodName;
+    private TextView brandName;
+    private TextView calories;
+    private double caloriesSubDouble;
+    private double totalCalsDouble;
 
 
     private FragmentHomeBinding binding;
@@ -63,6 +68,7 @@ public class HomeFragment extends Fragment {
         String totalCalories;
         firebaseAuth = FirebaseAuth.getInstance();
         userData = FirebaseDatabase.getInstance();
+
 
 
 
@@ -103,13 +109,43 @@ public class HomeFragment extends Fragment {
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
                 if(!userProfile.getCurrentFoodCalories().equals("0")){
                     totalCals = Integer.parseInt(userProfile.getCaloriesLeft());
-                    caloriesSubInt = Integer.parseInt(caloriesSub);
+                    caloriesSubDouble = Double.parseDouble(caloriesSub);
+                    caloriesSubInt = (int)caloriesSubDouble;
+//                    caloriesSubInt = Integer.parseInt(caloriesSub);
                     totalCals = totalCals - caloriesSubInt;
+                    foodName = root.findViewById(R.id.recent_item);
+                    brandName = root.findViewById(R.id.recent_brand);
+                    calories = root.findViewById(R.id.recent_calories);
+
+                    foodName.setText(FoodFragment.foodName);
+                    brandName.setText("Brand: " + FoodFragment.brandName);
+                    calories.setText("Calories: " + FoodFragment.calories);
+
                     databaseReference.child(user.getUid()).child("caloriesLeft").setValue(String.valueOf(totalCals));
                     databaseReference.child(user.getUid()).child("currentFoodCalories").setValue("0");
                 }
+                if(FoodFragment.calories != null) {
+                    undo = root.findViewById(R.id.undo_btn);
+                    undo.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(Double.parseDouble(FoodFragment.calories) != 0 && !foodName.getText().equals("")) {
+                                totalCalsDouble = Double.parseDouble(FoodFragment.calories);
+                                totalCals += (int)totalCalsDouble;
+                                databaseReference.child(user.getUid()).child("caloriesLeft").setValue(String.valueOf(totalCals));
+                                calorieDisplay.setText(String.valueOf(totalCals));
+                                foodName.setText("");
+                                brandName.setText("");
+                                calories.setText("");
+                            }
+                        }
+                    });
+                }
+
+
             }
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {

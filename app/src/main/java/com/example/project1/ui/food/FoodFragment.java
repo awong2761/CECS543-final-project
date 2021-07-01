@@ -62,6 +62,10 @@ public class FoodFragment extends Fragment {
     ArrayList<String> brandNames;
     ArrayList<String> nf_calories;
 
+    public static String foodName;
+    public static String brandName;
+    public static String calories;
+
 
     private ProgressDialog pDialog;
 
@@ -210,6 +214,9 @@ public class FoodFragment extends Fragment {
                     databaseReference.child(user.getUid()).child("currentFoodName").setValue(foodItems.get(position));
                     databaseReference.child(user.getUid()).child("currentBrandName").setValue(brandNames.get(position));
                     databaseReference.child(user.getUid()).child("currentFoodCalories").setValue(nf_calories.get(position));
+                    foodName = foodItems.get(position);
+                    brandName = brandNames.get(position);
+                    calories = nf_calories.get(position);
                     startActivity(navigation);
 //                    Intent intent = new Intent(getActivity().getApplicationContext(), HomeFragment.class);
 //                    intent.putExtra("FROM_ACTIVITY", "TEST");
