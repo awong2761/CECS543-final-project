@@ -30,8 +30,9 @@ public class UserProfile {
         this.profilePic = profilePic;
         this.currentFoodName = currentFoodName;
         this.currentFoodCalories = currentFoodCalories;
-        this. currentBrandName = currentBrandName;
+        this.currentBrandName = currentBrandName;
     }
+    public UserProfile(){}
 
     // Below is all of the get and set methods, created if needed
     public String getCurrentFoodName(){ return currentFoodName; }

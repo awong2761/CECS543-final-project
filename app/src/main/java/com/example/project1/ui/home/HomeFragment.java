@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 userProfile = snapshot.getValue(UserProfile.class);
                 calorieDisplay.setText(userProfile.getCaloriesLeft());
-                caloriesSub = (userProfile.getCurrentFoodCalories()).replaceAll("\\.0*$", "");
+                caloriesSub = (userProfile.getCurrentFoodCalories());
                 firebaseAuth = FirebaseAuth.getInstance();
                 if(Integer.parseInt(userProfile.getCaloriesLeft()) < 0) {
                     TextPaint paint = calorieDisplay.getPaint();

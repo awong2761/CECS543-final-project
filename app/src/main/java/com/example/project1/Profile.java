@@ -62,11 +62,11 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 UserProfile userProfile = snapshot.getValue(UserProfile.class);
-                height.setText("Height: " + userProfile.getFeetNum() + "'" + userProfile.getInchNum());
-                currentWeight.setText("Current Weight: " + userProfile.getCurWeight());
-                goalWeight.setText("Goal Weight: " + userProfile.getGoalWeight());
-                activityLevel.setText("Activity Level: " + userProfile.getaLevel());
-                gender.setText("Gender: " + userProfile.getGender());
+                height.setText(userProfile.getFeetNum() + "'" + userProfile.getInchNum());
+                currentWeight.setText(userProfile.getCurWeight());
+                goalWeight.setText(userProfile.getGoalWeight());
+                activityLevel.setText(userProfile.getaLevel());
+                gender.setText(userProfile.getGender());
                 profilepic.setImageURI(Uri.parse(userProfile.getProfilePic()));
 
             }
