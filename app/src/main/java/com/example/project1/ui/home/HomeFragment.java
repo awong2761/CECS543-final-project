@@ -1,6 +1,5 @@
 package com.example.project1.ui.home;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
@@ -11,17 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.project1.Navigation;
 import com.example.project1.R;
-import com.example.project1.UserInfo;
 import com.example.project1.UserProfile;
 import com.example.project1.databinding.FragmentHomeBinding;
 import com.example.project1.ui.food.FoodFragment;
@@ -35,9 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Observable;
 
-import static java.lang.Math.abs;
 // The home class represents the home page in which it shows the calories display and last food
 public class HomeFragment extends Fragment {
     public static TextView calorieDisplay;
@@ -68,7 +59,6 @@ public class HomeFragment extends Fragment {
 
         caloriesLeftMessage= root.findViewById(R.id.caloriesLeft_msg);
         calorieDisplay = root.findViewById(R.id.calorie_display);
-        String totalCalories;
         firebaseAuth = FirebaseAuth.getInstance();
         userData = FirebaseDatabase.getInstance();
 
@@ -117,7 +107,6 @@ public class HomeFragment extends Fragment {
                     totalCals = Integer.parseInt(userProfile.getCaloriesLeft());
                     caloriesSubDouble = Double.parseDouble(caloriesSub);
                     caloriesSubInt = (int)caloriesSubDouble;
-//                    caloriesSubInt = Integer.parseInt(caloriesSub);
                     totalCals = totalCals - caloriesSubInt;
                     foodName = root.findViewById(R.id.recent_item);
                     brandName = root.findViewById(R.id.recent_brand);

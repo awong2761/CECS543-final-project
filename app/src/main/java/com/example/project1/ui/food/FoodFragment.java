@@ -49,8 +49,6 @@ public class FoodFragment extends Fragment {
     private SearchView sv;
     private FoodFragmentBinding binding;
 
-    private NavigationView navigationView;
-
     private View root;
     private FirebaseAuth firebaseAuth;
 
@@ -69,14 +67,7 @@ public class FoodFragment extends Fragment {
     public static String brandName;
     public static String calories;
 
-
     private ProgressDialog pDialog;
-
-    public static FoodFragment newInstance() {
-        return new FoodFragment();
-    }
-
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -93,11 +84,6 @@ public class FoodFragment extends Fragment {
         Navigation.navigationView.getMenu().findItem(R.id.nav_home).setEnabled(true);
         Navigation.navigationView.getMenu().findItem(R.id.nav_food).setEnabled(false);
         Navigation.navigationView.getMenu().findItem(R.id.nav_help).setEnabled(true);
-
-
-//        getActivity().setSupportActionBar(toolbar);
-//        getActivity().getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         new GetFood().execute();
         return root;

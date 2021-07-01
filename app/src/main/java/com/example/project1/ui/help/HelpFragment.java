@@ -46,8 +46,6 @@ import java.util.ArrayList;
 
 public class HelpFragment extends Fragment {
 
-    private static final int RESULT_OK = 0 ;
-    private HelpViewModel helpViewModel;
     private FragmentHelpBinding binding;
     String imgSelected = "hold";
 
@@ -69,7 +67,6 @@ public class HelpFragment extends Fragment {
     private Button changepic;
     private TextView closepop2;
 
-    private FirebaseDatabase userData;
     private Context context1;
     private Context context2;
     private FirebaseUser user;
@@ -98,8 +95,7 @@ public class HelpFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        helpViewModel =
-                new ViewModelProvider(this).get(HelpViewModel.class);
+
         binding = FragmentHelpBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 

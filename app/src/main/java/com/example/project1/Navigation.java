@@ -13,10 +13,8 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.project1.ui.food.FoodFragmentDirections;
-import com.example.project1.ui.help.HelpFragment;
+
 import com.example.project1.ui.home.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -30,8 +28,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project1.databinding.ActivityNavigationBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -82,11 +78,9 @@ public class Navigation extends AppCompatActivity {
         navigationView.getMenu().findItem(R.id.nav_home).setEnabled(false);
         navigationView.getMenu().findItem(R.id.nav_food).setEnabled(true);
         navigationView.getMenu().findItem(R.id.nav_help).setEnabled(true);
+
         // call if logout is clicked
         logoutClick();
-
-        // call if food is clicked
-//        foodClick();
 
         View headerView = navigationView.getHeaderView(0);
         drawerUsername = headerView.findViewById(R.id.drawer_username);
@@ -135,39 +129,12 @@ public class Navigation extends AppCompatActivity {
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
             }
         });
-
-
-
-
-
-//        String setImagePic = getIntent().getStringExtra("image");
-//        if(setImagePic != null){
-//            switch(setImagePic){
-//                case "super": profilepic.setImageResource(R.drawable.pic1); break;
-//                case "bat": profilepic.setImageResource(R.drawable.pic2); break;
-//                case "wonder": profilepic.setImageResource(R.drawable.pic3); break;
-//            }
-//        }
-
-
-
     }
 
     public void onClick(View v) {
         Intent profile = new Intent(getApplicationContext(), Profile.class);
-        //profile.putExtra("displayName", user);
         startActivity(profile);
     }
-
-//    public void foodClick() {
-//        navigationView.getMenu().findItem(R.id.nav_food).setOnMenuItemClickListener(menuItem -> {
-//           Intent food = new Intent(getApplicationContext(), Food.class);
-//           food.putExtra("displayName", user);
-//           finish();
-//           startActivity(food);
-//           return true;
-//        });
-//    }
 
     public void logoutClick() {
         navigationView.getMenu().findItem(R.id.nav_logout).setOnMenuItemClickListener(menuItem -> {
