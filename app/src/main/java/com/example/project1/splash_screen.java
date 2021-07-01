@@ -18,6 +18,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+// This class is used to create the splash screen animations
 public class splash_screen extends AppCompatActivity {
 
     private static int SPLASH_SCREEN = 3000;
@@ -30,6 +31,7 @@ public class splash_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        // Color settings for the logo
         logotext = findViewById(R.id.logotext);
         TextPaint paint = logotext.getPaint();
         float width = paint.measureText(logotext.getText().toString());
@@ -41,13 +43,16 @@ public class splash_screen extends AppCompatActivity {
         logotext.getPaint().setShader(textShader);
         logotext.setTextColor(Color.parseColor("#3DBDB0"));
 
+        // Setting animations for logo and text
         logosplash = findViewById(R.id.logodum);
         topAnimation = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         botAnimation = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
-
         logotext.setAnimation(botAnimation);
         logosplash.setAnimation(botAnimation);
 
+
+        // Created in order to mesh two different classes together for animation adapting. Splash screen
+        // animation will adapt to Login class layout.
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

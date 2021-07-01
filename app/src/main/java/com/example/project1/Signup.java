@@ -22,6 +22,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 import org.jetbrains.annotations.NotNull;
 
+// This signup class representing the signup page takes in information for new users to be used later.
 public class Signup extends AppCompatActivity {
 
     private Button btnSignMeUp;

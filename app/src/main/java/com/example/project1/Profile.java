@@ -19,6 +19,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+// The profile class represents the profile page in which it provides a place for users to see
+// their current information.
 public class Profile extends AppCompatActivity {
 
     private TextView height;
@@ -49,8 +51,9 @@ public class Profile extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         userData = FirebaseDatabase.getInstance();
 
-        DatabaseReference databaseReference = userData.getReference(firebaseAuth.getUid());
 
+        // Accessing the realtime database, all values are grabbed here in order to set text values
+        DatabaseReference databaseReference = userData.getReference(firebaseAuth.getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -64,6 +67,7 @@ public class Profile extends AppCompatActivity {
 
             }
 
+            // Error message for cancelled
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
                 Toast.makeText(Profile.this, "Error", Toast.LENGTH_SHORT).show();
@@ -72,6 +76,7 @@ public class Profile extends AppCompatActivity {
 
     }
 
+    // This method checks and grabs the username from the home page that was passed on
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {

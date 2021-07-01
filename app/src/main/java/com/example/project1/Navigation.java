@@ -54,8 +54,7 @@ public class Navigation extends AppCompatActivity {
     private FirebaseDatabase userData;
     private String user;
     public static ImageView profilepic;
-    private Uri profilepicset;
-    UserProfileChangeRequest profileUpdates;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

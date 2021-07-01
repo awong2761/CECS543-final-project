@@ -37,7 +37,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Observable;
 
 import static java.lang.Math.abs;
-
+// The home class represents the home page in which it shows the calories display and last food
 public class HomeFragment extends Fragment {
     public static TextView calorieDisplay;
     public static TextView caloriesLeftMessage;
@@ -72,17 +72,14 @@ public class HomeFragment extends Fragment {
         userData = FirebaseDatabase.getInstance();
 
 
-
-
-
-
+        // This checks the data that has been changed on the database and updates the necessary values as needed
         DatabaseReference databaseReference = userData.getReference(firebaseAuth.getUid());
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 userProfile = snapshot.getValue(UserProfile.class);
                 calorieDisplay.setText(userProfile.getCaloriesLeft());
-                caloriesSub = userProfile.getCurrentFoodCalories();
+                caloriesSub = (userProfile.getCurrentFoodCalories()).replaceAll("\\.0*$", "");
                 firebaseAuth = FirebaseAuth.getInstance();
                 if(Integer.parseInt(userProfile.getCaloriesLeft()) < 0) {
                     TextPaint paint = calorieDisplay.getPaint();
