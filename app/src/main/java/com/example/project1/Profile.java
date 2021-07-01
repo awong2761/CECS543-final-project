@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,7 @@ public class Profile extends AppCompatActivity {
     private FirebaseDatabase userData;
     private Toolbar toolbar;
     private String user;
+    private ImageView profilepic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class Profile extends AppCompatActivity {
         activityLevel = findViewById(R.id.profile_activity_level);
         gender = findViewById(R.id.profile_gender);
         toolbar = findViewById(R.id.profile_toolbar);
+        profilepic = findViewById(R.id.profilePage_pic);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         user = getIntent().getStringExtra("displayName");
@@ -63,7 +67,7 @@ public class Profile extends AppCompatActivity {
                 goalWeight.setText("Goal Weight: " + userProfile.getGoalWeight());
                 activityLevel.setText("Activity Level: " + userProfile.getaLevel());
                 gender.setText("Gender: " + userProfile.getGender());
-
+                profilepic.setImageURI(Uri.parse(userProfile.getProfilePic()));
 
             }
 
