@@ -32,27 +32,27 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.175"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dev_toolbar"
             app:layout_constraintVertical_bias="0.137"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@drawable/lebron" />
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.858"
+            app:layout_constraintHorizontal_bias="0.83"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dev_toolbar"
             app:layout_constraintVertical_bias="0.137"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@drawable/luka" />
 
         <TextView
             android:id="@+id/textView2"
@@ -60,9 +60,10 @@
             android:layout_height="wrap_content"
             android:text="Richard Nguyen"
             android:textColor="@color/white"
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.202"
+            app:layout_constraintHorizontal_bias="0.225"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:layout_constraintVertical_bias="0.0" />
@@ -73,9 +74,10 @@
             android:layout_height="wrap_content"
             android:text="Andy Wong"
             android:textColor="@color/white"
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.791"
+            app:layout_constraintHorizontal_bias="0.755"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
             app:layout_constraintVertical_bias="0.0" />
@@ -86,13 +88,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:text="Two CS students who got no clue what they doing and just following youtube tutorials."
+            android:text="We are glad to see that you have actively taken action towards your health in order to live a long and happy life.  We the developers have seen first hand how bad eating habits could affect an Individual's quality of life.  Countless times have we seen family members and close friends have their lives taken away from them at an early age due to diabetes.  Changing eating habits will take extreme dedication, but we are here beside you every step of the way. Stay strong and let your journey begin!"
             android:textColor="@color/white"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dev_toolbar"
-            app:layout_constraintVertical_bias="0.46" />
+            app:layout_constraintVertical_bias="0.714" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
