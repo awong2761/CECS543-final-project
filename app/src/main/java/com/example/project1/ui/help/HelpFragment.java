@@ -16,29 +16,18 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.project1.Navigation;
-import com.example.project1.Profile;
 import com.example.project1.R;
 import com.example.project1.UserInfo;
-import com.example.project1.UserProfile;
 import com.example.project1.databinding.FragmentHelpBinding;
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
-import com.theartofdev.edmodo.cropper.CropImage;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -56,6 +45,7 @@ public class HelpFragment extends Fragment {
 
     private Button popchangepic;
     private Button popchangepass;
+    private Button editInfo;
     private TextView closepop;
     private Button changepass;
     private EditText currentpass;
@@ -102,6 +92,15 @@ public class HelpFragment extends Fragment {
 
         binding = FragmentHelpBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        editInfo = root.findViewById(R.id.editinfo_help);
+        editInfo.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(context, UserInfo.class);
+                startActivity(intent);
+            }
+        });
 
         popchangepass = root.findViewById(R.id.changepass_help);
         popchangepass.setOnClickListener(new View.OnClickListener() {

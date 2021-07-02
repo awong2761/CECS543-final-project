@@ -24,6 +24,19 @@
         app:layout_constraintVertical_bias="0.12" />
 
     <Button
+        android:id="@+id/editinfo_help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonstyle1"
+        android:text="Edit Info"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changepic_help"
+        app:layout_constraintVertical_bias="0.042" />
+
+    <Button
         android:id="@+id/changepic_help"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
