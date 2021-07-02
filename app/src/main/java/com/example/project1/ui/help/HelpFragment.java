@@ -137,7 +137,6 @@ public class HelpFragment extends Fragment {
         diag1.setCanceledOnTouchOutside(false);
         closepop = (TextView) diag1.findViewById(R.id.pass_close);
         changepass = (Button) diag1.findViewById(R.id.confirm_pass_change);
-        currentpass = (EditText) diag1.findViewById(R.id.edt_current_pass);
         newpass = (EditText) diag1.findViewById(R.id.edt_new_pass);
         closepop.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -145,11 +144,9 @@ public class HelpFragment extends Fragment {
                 diag1.dismiss();
             }
         });
-
         changepass.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String currentpassenter = currentpass.getText().toString();
                 String newpassenter = newpass.getText().toString();
                 user.updatePassword(newpassenter).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
