@@ -55,9 +55,6 @@ public class Profile extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         userData = FirebaseDatabase.getInstance();
 
-        Navigation.navigationView.getMenu().findItem(R.id.nav_home).setEnabled(true);
-        Navigation.navigationView.getMenu().findItem(R.id.nav_food).setEnabled(false);
-        Navigation.navigationView.getMenu().findItem(R.id.nav_help).setEnabled(true);
 
         // Accessing the realtime database, all values are grabbed here in order to set text values
         DatabaseReference databaseReference = userData.getReference(firebaseAuth.getUid());
