@@ -18,7 +18,7 @@
     <string name="action_settings">Developers</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_help">Help</string>
+    <string name="menu_help">Settings</string>
     <string name="menu_food">Add Food</string>
 
     <string name="change_pass">Change Password</string>
