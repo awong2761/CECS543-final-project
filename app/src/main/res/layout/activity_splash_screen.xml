@@ -6,9 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".splash_screen"
     android:background="@color/background"
-    android:paddingRight="60dp"
-    android:screenOrientation="portrait"
-    android:paddingLeft="60dp">
+    android:screenOrientation="portrait">
 
     <ImageView
         android:id="@+id/logodum"
