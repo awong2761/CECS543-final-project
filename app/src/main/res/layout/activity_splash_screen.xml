@@ -30,12 +30,10 @@
         android:text="m o r e f i t"
         android:textSize="52dp"
         android:transitionName="logo_text"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logodum"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/logodum" />
 
     <TextView
         android:id="@+id/splash_desc"
