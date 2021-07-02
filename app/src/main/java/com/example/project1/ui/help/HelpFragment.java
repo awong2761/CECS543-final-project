@@ -234,6 +234,7 @@ public class HelpFragment extends Fragment {
                         break;
                 }
                 databaseReference.child(user.getUid()).child("profilePic").setValue(test.toString());
+                diag2.dismiss();
             }
         });
     }
