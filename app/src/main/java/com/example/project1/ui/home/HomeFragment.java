@@ -108,9 +108,9 @@ public class HomeFragment extends Fragment {
 
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                totalCals = Integer.parseInt(userProfile.getCaloriesLeft());
 
                 if(!userProfile.getCurrentFoodCalories().equals(userProfile.getPrevCalories())){
-                    totalCals = Integer.parseInt(userProfile.getCaloriesLeft());
                     caloriesSubDouble = Double.parseDouble(caloriesSub);
                     caloriesSubInt = (int)caloriesSubDouble;
                     totalCals = totalCals - caloriesSubInt;
