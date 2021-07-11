@@ -38,15 +38,14 @@ public class HomeFragment extends Fragment {
     private String caloriesSub = "";
     private int caloriesSubInt;
     private int totalCals;
-    private int totalCalsFinal;
     public UserProfile userProfile;
-    public static String caloriesSub1 = "";
     private Button undo;
     private TextView foodName;
     private TextView brandName;
     private TextView calories;
     private double caloriesSubDouble;
     private double totalCalsDouble;
+    private String prevFoodCalories;
 
 
     private FragmentHomeBinding binding;
@@ -62,10 +61,19 @@ public class HomeFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         userData = FirebaseDatabase.getInstance();
 
+        foodName = root.findViewById(R.id.recent_item);
+        brandName = root.findViewById(R.id.recent_brand);
+        calories = root.findViewById(R.id.recent_calories);
+
+        userProfile = new UserProfile();
+
+
+
 
 
         // This checks the data that has been changed on the database and updates the necessary values as needed
         DatabaseReference databaseReference = userData.getReference(firebaseAuth.getUid());
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -103,35 +111,36 @@ public class HomeFragment extends Fragment {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-                if(!userProfile.getCurrentFoodCalories().equals("0")){
+                if(!userProfile.getCurrentFoodCalories().equals(userProfile.getPrevCalories())){
                     totalCals = Integer.parseInt(userProfile.getCaloriesLeft());
                     caloriesSubDouble = Double.parseDouble(caloriesSub);
                     caloriesSubInt = (int)caloriesSubDouble;
                     totalCals = totalCals - caloriesSubInt;
-                    foodName = root.findViewById(R.id.recent_item);
-                    brandName = root.findViewById(R.id.recent_brand);
-                    calories = root.findViewById(R.id.recent_calories);
-
-                    foodName.setText(FoodFragment.foodName);
-                    brandName.setText("Brand: " + FoodFragment.brandName);
-                    calories.setText("Calories: " + FoodFragment.calories);
 
                     databaseReference.child(user.getUid()).child("caloriesLeft").setValue(String.valueOf(totalCals));
-                    databaseReference.child(user.getUid()).child("currentFoodCalories").setValue("0");
-                } else if(foodName != null){
-                    foodName.setText(FoodFragment.foodName);
-                    brandName.setText("Brand: " + FoodFragment.brandName);
-                    calories.setText("Calories: " + FoodFragment.calories);
+                    databaseReference.child(user.getUid()).child("prevCalories").setValue(userProfile.getCurrentFoodCalories());
+
                 }
-                if(FoodFragment.calories != null) {
+
+                if(!userProfile.getCurrentFoodName().equals("0")) {
+                    foodName.setText(userProfile.getCurrentFoodName());
+                    brandName.setText("Brand: " + userProfile.getCurrentBrandName());
+                    calories.setText("Calories: " + userProfile.getCurrentFoodCalories());
+                }
+
+                if(userProfile.getCurrentFoodCalories() != null) {
                     undo = root.findViewById(R.id.undo_btn);
                     undo.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if(Double.parseDouble(FoodFragment.calories) != 0 && !foodName.getText().equals("")) {
-                                totalCalsDouble = Double.parseDouble(FoodFragment.calories);
+                            if(Double.parseDouble(userProfile.getCurrentFoodCalories()) != 0 && !foodName.getText().equals("")) {
+                                totalCalsDouble = Double.parseDouble(userProfile.getCurrentFoodCalories());
                                 totalCals += (int)totalCalsDouble;
                                 databaseReference.child(user.getUid()).child("caloriesLeft").setValue(String.valueOf(totalCals));
+                                databaseReference.child(user.getUid()).child("currentBrandName").setValue("0");
+                                databaseReference.child(user.getUid()).child("currentFoodCalories").setValue("0");
+                                databaseReference.child(user.getUid()).child("currentFoodName").setValue("0");
+                                databaseReference.child(user.getUid()).child("prevCalories").setValue("0");
                                 calorieDisplay.setText(String.valueOf(totalCals));
                                 foodName.setText("");
                                 brandName.setText("");

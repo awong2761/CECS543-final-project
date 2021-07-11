@@ -54,6 +54,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
     String userAge;
     String caloriesLeft;
     String calories;
+    String prevCalories;
     String foodName;
     String foodBrand;
     int caloriesLeftNum;
@@ -134,6 +135,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
                 foodName = "0";
                 foodBrand = "0";
                 calories = "0";
+                prevCalories = "0";
 
                 // Setting the necessary values for the total calories the user needs left for the day
                 height = (Integer.parseInt(feetNum)*30.48) + (Integer.parseInt(inchNum)*2.54);
@@ -191,7 +193,7 @@ public class UserInfo extends AppCompatActivity implements AdapterView.OnItemSel
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
         UserProfile userProfile = new UserProfile(feetNum, inchNum, curWeight, gWeight ,aLevel,
-                gender, caloriesLeft, userAge, profilePic, foodName, calories, foodBrand);
+                gender, caloriesLeft, userAge, profilePic, foodName, calories, foodBrand, prevCalories);
         myRef.setValue(userProfile);
     }
 

@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.example.project1.HttpHandler;
 import com.example.project1.Navigation;
 import com.example.project1.R;
+import com.example.project1.UserProfile;
 import com.example.project1.databinding.FoodFragmentBinding;
 import com.example.project1.ui.home.HomeFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -51,6 +52,7 @@ public class FoodFragment extends Fragment {
 
     private View root;
     private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase userData;
 
     private static final String appKey = "7f277e1bb0cb1d3b0b756e3cf375365c";
     private static final String appId = "7da7c17c";
@@ -70,9 +72,6 @@ public class FoodFragment extends Fragment {
     public static String foodName;
     public static String brandName;
     public static String calories;
-    private String prevFoodName;
-    private String prevBrandName;
-    private String prevCalories;
 
     private ProgressDialog pDialog;
 
@@ -91,14 +90,22 @@ public class FoodFragment extends Fragment {
         nf_calories = new ArrayList<>();
         setHasOptionsMenu(true);
         pDialog = new ProgressDialog(getActivity().getApplicationContext());
+        UserProfile info = new UserProfile();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        userData = FirebaseDatabase.getInstance();
 
         Navigation.navigationView.getMenu().findItem(R.id.nav_home).setEnabled(true);
         Navigation.navigationView.getMenu().findItem(R.id.nav_home).setOnMenuItemClickListener(menuItem -> {
-            foodName = prevFoodName;
-            brandName = prevBrandName;
-            calories = prevCalories;
-            firebaseAuth = FirebaseAuth.getInstance();
+            DatabaseReference databaseReference = userData.getReference(firebaseAuth.getUid());
             FirebaseUser user = firebaseAuth.getCurrentUser();
+
+
+            foodName = info.getCurrentFoodName();
+            brandName = info.getCurrentBrandName();
+            calories = info.getCurrentFoodCalories();
+
+
             Intent navigation = new Intent(getActivity().getApplicationContext(), Navigation.class);
             navigation.putExtra("displayName", user.getDisplayName());
             startActivity(navigation);
@@ -232,9 +239,6 @@ public class FoodFragment extends Fragment {
                     foodName = foodItems.get(position);
                     brandName = brandNames.get(position);
                     calories = nf_calories.get(position);
-                    prevFoodName = foodName;
-                    prevBrandName = brandName;
-                    prevCalories = calories;
                     navigation.putExtra("displayName", user.getDisplayName());
                     startActivity(navigation);
 //                    Intent intent = new Intent(getActivity().getApplicationContext(), HomeFragment.class);
