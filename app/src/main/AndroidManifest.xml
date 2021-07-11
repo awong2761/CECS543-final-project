@@ -12,8 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Project1">
-        <activity android:name=".Food"
-            android:configChanges="keyboardHidden|orientation|screenSize"></activity>
         <activity android:name=".splash_screen"
             android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
