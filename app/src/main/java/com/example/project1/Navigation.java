@@ -75,9 +75,6 @@ public class Navigation extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        navigationView.getMenu().findItem(R.id.nav_home).setEnabled(false);
-        navigationView.getMenu().findItem(R.id.nav_food).setEnabled(true);
-        navigationView.getMenu().findItem(R.id.nav_help).setEnabled(true);
 
         // call if logout is clicked
         logoutClick();

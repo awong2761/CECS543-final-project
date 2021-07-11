@@ -95,24 +95,6 @@ public class FoodFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         userData = FirebaseDatabase.getInstance();
 
-        Navigation.navigationView.getMenu().findItem(R.id.nav_home).setEnabled(true);
-        Navigation.navigationView.getMenu().findItem(R.id.nav_home).setOnMenuItemClickListener(menuItem -> {
-            DatabaseReference databaseReference = userData.getReference(firebaseAuth.getUid());
-            FirebaseUser user = firebaseAuth.getCurrentUser();
-
-
-            foodName = info.getCurrentFoodName();
-            brandName = info.getCurrentBrandName();
-            calories = info.getCurrentFoodCalories();
-
-
-            Intent navigation = new Intent(getActivity().getApplicationContext(), Navigation.class);
-            navigation.putExtra("displayName", user.getDisplayName());
-            startActivity(navigation);
-            return true;
-        });
-        Navigation.navigationView.getMenu().findItem(R.id.nav_food).setEnabled(false);
-        Navigation.navigationView.getMenu().findItem(R.id.nav_help).setEnabled(true);
 
         new GetFood().execute();
         return root;

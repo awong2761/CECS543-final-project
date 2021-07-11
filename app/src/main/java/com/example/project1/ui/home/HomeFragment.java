@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import com.example.project1.R;
 import com.example.project1.UserProfile;
 import com.example.project1.databinding.FragmentHomeBinding;
-import com.example.project1.ui.food.FoodFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -45,7 +44,6 @@ public class HomeFragment extends Fragment {
     private TextView calories;
     private double caloriesSubDouble;
     private double totalCalsDouble;
-    private String prevFoodCalories;
 
 
     private FragmentHomeBinding binding;
